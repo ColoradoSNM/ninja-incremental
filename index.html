@@ -743,7 +743,9 @@ var jefeData=null,jefeMiDano=0;
 var miClan=null;
 var chatInterval=null;
 
-function loadState(){
+// Borrar versiones anteriores del juego
+['ninjaV1','ninjaV2','ninjaV3','ninjaV4'].forEach(function(k){localStorage.removeItem(k);});
+loadState();
   try{
     var s=JSON.parse(localStorage.getItem(SAVE_KEY));
     if(s){
