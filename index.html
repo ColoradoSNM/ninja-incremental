@@ -1212,7 +1212,7 @@ var lastRender=Date.now();
 function renderLoop(){var now=Date.now(),dt=now-lastRender;lastRender=now;if(shakeTimer>0)shakeTimer-=dt;else shakeIntensity=0;if(NINJA.hitTimer>0)NINJA.hitTimer-=dt;var W=canvas.width,H=canvas.height;ctx.clearRect(0,0,W,H);drawBackground(dt);if(deathFlash>0){ctx.fillStyle='rgba(230,57,70,'+(deathFlash/10)+')';ctx.fillRect(0,0,W,H);deathFlash-=dt*.05;}NINJA.frameTimer+=dt;if(NINJA.frameTimer>=NINJA.frameDuration){NINJA.frameTimer=0;NINJA.frame=(NINJA.frame+1)%NINJA.totalFrames;}if(NINJA.attacking){NINJA.attackTimer+=dt;if(NINJA.attackTimer>=NINJA.attackDuration){NINJA.attacking=false;NINJA.attackTimer=0;}}drawNinja(NINJA.x,NINJA.y,NINJA.frame,NINJA.attacking);drawNinjaHpBar();if(ENEMY.alive){ENEMY.frameTimer+=dt;if(ENEMY.frameTimer>=ENEMY.frameDuration){ENEMY.frameTimer=0;ENEMY.frame=(ENEMY.frame+1)%ENEMY.totalFrames;}drawEnemy(ENEMY);}else if(ENEMY.dying){ENEMY.dyingTimer+=dt;if(ENEMY.dyingTimer>500){ENEMY.dying=false;spawnEnemy();}}for(var i=impactParticles.length-1;i>=0;i--){var p=impactParticles[i];p.x+=p.vx;p.y+=p.vy;p.vy+=.15;p.life-=p.decay;if(p.life<=0){impactParticles.splice(i,1);continue;}ctx.globalAlpha=p.life;ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;}for(var i=starRain.length-1;i>=0;i--){var s=starRain[i];s.x+=s.vx;s.y+=s.vy;s.life-=.015;if(s.life<=0||s.y>H+10){starRain.splice(i,1);continue;}ctx.globalAlpha=s.life;ctx.fillStyle=s.color;ctx.beginPath();ctx.arc(s.x,s.y,s.size,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;}if(slashEffect.active){slashEffect.timer+=dt;if(slashEffect.timer>200)slashEffect.active=false;drawSlash();}if(bonusActivo){bonusTimer-=dt;if(bonusTimer<=0){bonusActivo=false;document.getElementById('bonus-hud').style.display='none';}}if(pocionActiva){pocionTimer-=dt;if(pocionTimer<=0){pocionActiva=false;showToast('🧪 Poción de fuego terminada');}}requestAnimationFrame(renderLoop);}
 
 // ══ COMBATE ══
-function enemyAttackTick(dt){if(!ENEMY.alive||estaMuerto)return;ENEMY.attackTimer-=dt;if(ENEMY.attackTimer<=0){ENEMY.attackTimer=ENEMY.attackInterval;var dano=getDanoEnemigo();hp-=dano;NINJA.hitTimer=300;shakeTimer=150;shakeIntensity=3;sfx(200,80,'sawtooth',.06,.2);spawnDmgNum(NINJA.x,NINJA.y-30,'-'+Math.ceil(dano),true);if(hp<=0){hp=0;triggerDeath();}updateDisplay();}}
+function enemyAttackTick(dt){if(!ENEMY.alive||estaMuerto||!juegoIniciado)return;ENEMY.attackTimer-=dt;if(ENEMY.attackTimer<=0){ENEMY.attackTimer=ENEMY.attackInterval;var dano=getDanoEnemigo();hp-=dano;NINJA.hitTimer=300;shakeTimer=150;shakeIntensity=3;sfx(200,80,'sawtooth',.06,.2);spawnDmgNum(NINJA.x,NINJA.y-30,'-'+Math.ceil(dano),true);if(hp<=0){hp=0;triggerDeath();}updateDisplay();}}
 function triggerDeath(){if(estaMuerto)return;estaMuerto=true;sfx(300,100,'triangle',.15,.5);document.getElementById('ds-almas').textContent=fmt(totalMana);document.getElementById('ds-kills').textContent=fmt(totalClicks);document.getElementById('ds-nivel').textContent=nivelEnemigo;document.getElementById('ds-mundo').textContent=mundoActual;prestigeSeleccion=null;document.getElementById('card-almas').classList.remove('selected');document.getElementById('card-dano').classList.remove('selected');document.getElementById('prestige-btn').disabled=true;document.getElementById('prestige-btn').textContent='[ ELEGÍ UNA OPCIÓN ]';document.getElementById('death-screen').classList.add('show');uploadScore();}
 function selectPrestige(tipo){prestigeSeleccion=tipo;document.getElementById('card-almas').classList.toggle('selected',tipo==='almas');document.getElementById('card-dano').classList.toggle('selected',tipo==='dano');document.getElementById('prestige-btn').disabled=false;document.getElementById('prestige-btn').textContent='[ CONFIRMAR PRESTIGE ]';}
 function doPrestige(){if(!prestigeSeleccion)return;if(prestigeSeleccion==='almas')prestigeBonusMps+=0.2;else prestigeBonusCpc+=0.5;prestigeCount++;resetGame(true);}
@@ -1305,22 +1305,53 @@ requestAnimationFrame(gameTick);}
 setInterval(function(){if(document.getElementById('tab-misiones').classList.contains('active'))renderMisiones();},1000);
 setInterval(function(){if(document.getElementById('tab-jefe').classList.contains('active')&&jefeData){cargarJefe();cargarRankingJefe();}},5000);
 
-document.addEventListener('DOMContentLoaded',function(){var ci=document.getElementById('chat-input');if(ci)ci.addEventListener('keydown',function(e){if(e.key==='Enter')enviarMensaje();});});
-document.getElementById('name-btn').addEventListener('click',function(){var input=document.getElementById('name-input').value.trim();if(!input)return;nombreJugador=input;document.getElementById('name-screen').style.display='none';saveState();uploadScore();setTimeout(checkChallengeUrl,500);});
-document.getElementById('name-input').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('name-btn').click();});
+document.addEventListener('DOMContentLoaded',function(){
+  var ci=document.getElementById('chat-input');
+  if(ci)ci.addEventListener('keydown',function(e){if(e.key==='Enter')enviarMensaje();});
+
+  document.getElementById('name-btn').addEventListener('click',function(){
+    var input=document.getElementById('name-input').value.trim();
+    if(!input)return;
+    nombreJugador=input;
+    document.getElementById('name-screen').style.display='none';
+    // Primer click: iniciar el juego
+    if(!juegoIniciado){
+      juegoIniciado=true;
+      spawnEnemy();
+      requestAnimationFrame(renderLoop);
+      requestAnimationFrame(gameTick);
+    }
+    saveState();uploadScore();setTimeout(checkChallengeUrl,500);
+  });
+
+  document.getElementById('name-input').addEventListener('keydown',function(e){
+    if(e.key==='Enter')document.getElementById('name-btn').click();
+  });
+});
 
 // ══ INICIO ══
+// Borrar versiones anteriores
+['ninjaV1','ninjaV2','ninjaV3','ninjaV4'].forEach(function(k){localStorage.removeItem(k);});
+
+var juegoIniciado=false;
+
 loadState();
-if(nombreJugador){document.getElementById('name-screen').style.display='none';setTimeout(checkChallengeUrl,500);}
 hp=Math.min(hp,getMaxHp());
 if(itemEquipado){var itemR=RECETAS.find(function(r){return r.id===itemEquipado;});if(itemR)document.getElementById('stat-item').textContent=itemR.nombre;}
-buildButtons();updateDisplay();spawnEnemy();renderMundos();renderMisiones();updateClanBadge();
+buildButtons();updateDisplay();renderMundos();renderMisiones();updateClanBadge();
 if(miClan)updateClanPanel();
 actualizarTimerRueda();
 setInterval(saveState,10000);setInterval(uploadScore,30000);setInterval(actualizarAlmasClan,60000);
 scheduleFloatingObj();
-requestAnimationFrame(renderLoop);
-requestAnimationFrame(gameTick);
+
+if(nombreJugador){
+  document.getElementById('name-screen').style.display='none';
+  juegoIniciado=true;
+  spawnEnemy();
+  requestAnimationFrame(renderLoop);
+  requestAnimationFrame(gameTick);
+  setTimeout(checkChallengeUrl,500);
+}
 </script>
 </body>
 </html>
