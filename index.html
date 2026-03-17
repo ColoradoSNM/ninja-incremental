@@ -16,7 +16,6 @@ body{background:var(--bg);color:var(--text);font-family:'Courier New',monospace;
 #name-input{width:100%;padding:10px 14px;border-radius:6px;border:1px solid var(--border);background:var(--panel2);color:var(--text);font-size:1rem;font-family:'Courier New',monospace;margin-bottom:12px;outline:none;}
 #name-input:focus{border-color:var(--accent);}
 #name-btn{width:100%;padding:11px;border-radius:6px;border:none;background:var(--accent);color:#fff;font-size:1rem;font-family:'Courier New',monospace;cursor:pointer;font-weight:bold;letter-spacing:1px;}
-#name-btn:hover{background:#c1121f;}
 
 #death-screen{position:fixed;inset:0;background:#000000ee;display:none;align-items:center;justify-content:center;z-index:300;flex-direction:column;padding:12px;}
 #death-screen.show{display:flex;}
@@ -48,7 +47,6 @@ body{background:var(--bg);color:var(--text);font-family:'Courier New',monospace;
 .ch-scores{display:flex;gap:16px;font-size:.8rem;}
 .ch-me{color:var(--green);}
 .ch-rival{color:var(--accent2);}
-
 #challenge-screen{position:fixed;inset:0;background:#000000ee;display:none;align-items:center;justify-content:center;z-index:250;}
 #challenge-screen.show{display:flex;}
 #challenge-box{background:var(--panel);border:2px solid var(--gold);border-radius:16px;padding:28px 22px;text-align:center;max-width:360px;width:92%;}
@@ -58,7 +56,6 @@ body{background:var(--bg);color:var(--text);font-family:'Courier New',monospace;
 .ch-retador{color:var(--accent);font-size:1.1rem;font-weight:bold;margin-bottom:5px;}
 .ch-dur{color:var(--gold);font-size:.9rem;}
 .ch-regla{color:var(--accent2);font-size:.85rem;margin-top:5px;}
-
 #challenge-result{position:fixed;inset:0;background:#000000ee;display:none;align-items:center;justify-content:center;z-index:260;}
 #challenge-result.show{display:flex;}
 #result-box{background:var(--panel);border:2px solid var(--gold);border-radius:16px;padding:24px 20px;text-align:center;max-width:340px;width:92%;}
@@ -69,21 +66,75 @@ body{background:var(--bg);color:var(--text);font-family:'Courier New',monospace;
 .result-score-val{font-size:1.2rem;font-weight:bold;color:var(--gold);}
 .result-score-lbl{font-size:.7rem;color:var(--muted);margin-top:3px;}
 
-/* World transition */
 #world-transition{position:fixed;inset:0;background:#000;display:none;align-items:center;justify-content:center;z-index:400;flex-direction:column;gap:12px;}
 #world-transition.show{display:flex;}
 #world-transition h2{color:var(--purple);font-size:1.5rem;letter-spacing:3px;text-align:center;}
 #world-transition p{color:var(--muted);font-size:.9rem;}
+
+/* ── RUEDA DE LA FORTUNA MODAL ── */
+#wheel-modal{position:fixed;inset:0;background:#000000ee;display:none;align-items:center;justify-content:center;z-index:350;padding:12px;}
+#wheel-modal.show{display:flex;}
+#wheel-box{background:var(--panel);border:2px solid var(--gold);border-radius:16px;padding:24px 20px;text-align:center;max-width:380px;width:100%;box-shadow:0 0 40px #ffd70055;}
+#wheel-box h2{color:var(--gold);font-size:1.3rem;letter-spacing:2px;margin-bottom:4px;}
+#wheel-subtitle{color:var(--muted);font-size:.78rem;margin-bottom:14px;}
+#wheel-canvas-wrap{position:relative;margin:0 auto 14px;width:260px;height:260px;}
+#wheel-canvas{border-radius:50%;display:block;}
+#wheel-arrow{position:absolute;top:-12px;left:50%;transform:translateX(-50%);font-size:1.8rem;filter:drop-shadow(0 0 6px var(--gold));}
+#wheel-spin-btn{width:100%;padding:11px;border-radius:8px;border:none;background:var(--gold);color:#000;font-family:'Courier New',monospace;font-size:1rem;cursor:pointer;font-weight:bold;letter-spacing:1px;margin-bottom:8px;transition:all .2s;}
+#wheel-spin-btn:hover{background:#e6c200;transform:scale(1.02);}
+#wheel-spin-btn:disabled{background:#444;color:#666;cursor:not-allowed;transform:none;}
+#wheel-result{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:8px;display:none;}
+#wheel-result-txt{color:var(--gold);font-size:1rem;font-weight:bold;}
+#wheel-result-desc{color:var(--muted);font-size:.78rem;margin-top:3px;}
+#wheel-timer{color:var(--muted);font-size:.75rem;}
+#wheel-close-btn{width:100%;padding:9px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Courier New',monospace;font-size:.85rem;cursor:pointer;}
+
+/* ── CRAFTEO MODAL ── */
+#craft-modal{position:fixed;inset:0;background:#000000ee;display:none;align-items:center;justify-content:center;z-index:350;padding:12px;}
+#craft-modal.show{display:flex;}
+#craft-box{background:var(--panel);border:2px solid var(--purple);border-radius:16px;padding:24px 20px;max-width:420px;width:100%;box-shadow:0 0 40px #a259ff55;max-height:90vh;overflow-y:auto;}
+#craft-box h2{color:var(--purple);font-size:1.3rem;letter-spacing:2px;margin-bottom:4px;text-align:center;}
+#craft-subtitle{color:var(--muted);font-size:.78rem;margin-bottom:14px;text-align:center;}
+.craft-mats{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:12px;}
+.craft-mats h3{color:var(--accent2);font-size:.82rem;margin-bottom:8px;letter-spacing:1px;}
+.mats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.mat-item{text-align:center;padding:6px;background:var(--bg);border-radius:6px;border:1px solid var(--border);}
+.mat-icon{font-size:1.4rem;}
+.mat-nombre{font-size:.65rem;color:var(--muted);margin-top:2px;}
+.mat-cantidad{font-size:.85rem;color:var(--accent2);font-weight:bold;}
+.craft-recipes{display:flex;flex-direction:column;gap:8px;}
+.recipe-card{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;transition:border-color .2s;}
+.recipe-card.puede-craftear{border-color:var(--purple);}
+.recipe-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+.recipe-nombre{font-weight:bold;font-size:.88rem;color:var(--text);}
+.recipe-badge{font-size:.68rem;padding:2px 7px;border-radius:99px;}
+.recipe-badge.disponible{background:var(--purple);color:#fff;}
+.recipe-badge.equipado{background:var(--green);color:#000;}
+.recipe-badge.bloqueado{background:#333;color:var(--muted);}
+.recipe-desc{font-size:.75rem;color:var(--muted);margin-bottom:6px;}
+.recipe-ingredientes{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:7px;}
+.ing-item{font-size:.72rem;padding:2px 7px;border-radius:99px;background:var(--bg);border:1px solid var(--border);}
+.ing-item.ok{border-color:var(--green);color:var(--green);}
+.ing-item.falta{border-color:var(--accent);color:var(--accent);}
+.recipe-btn{width:100%;padding:7px;border-radius:6px;border:none;font-family:'Courier New',monospace;font-size:.78rem;cursor:pointer;font-weight:bold;}
+.recipe-btn.craftear{background:var(--purple);color:#fff;}
+.recipe-btn.craftear:hover{background:#8a3de0;}
+.recipe-btn.equipar{background:var(--green);color:#000;}
+.recipe-btn.equipado{background:#333;color:var(--green);cursor:default;}
+.recipe-btn.no-puede{background:#333;color:#666;cursor:not-allowed;}
+#craft-close-btn{width:100%;padding:9px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Courier New',monospace;font-size:.85rem;cursor:pointer;margin-top:10px;}
 
 #app{max-width:960px;margin:0 auto;padding:10px;}
 header{text-align:center;padding:14px 0 8px;}
 header h1{font-size:clamp(1.3rem,4vw,2rem);color:var(--accent);letter-spacing:3px;text-transform:uppercase;text-shadow:0 0 20px #e63946;}
 header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
 .header-badges{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:4px;}
-.hbadge{display:inline-block;border-radius:99px;padding:2px 10px;font-size:.72rem;font-weight:bold;}
+.hbadge{display:inline-block;border-radius:99px;padding:2px 10px;font-size:.72rem;font-weight:bold;cursor:default;}
 .hbadge.gold{background:var(--gold);color:#000;}
 .hbadge.purple{background:var(--purple);color:#fff;}
 .hbadge.green{background:var(--green);color:#000;}
+.hbadge.orange{background:var(--accent2);color:#000;cursor:pointer;}
+.hbadge.orange:hover{background:#e09040;}
 
 .tabs{display:flex;gap:3px;margin:10px 0 0;flex-wrap:wrap;}
 .tab-btn{padding:6px 8px;border:1px solid var(--border);border-bottom:none;border-radius:6px 6px 0 0;background:var(--panel2);color:var(--muted);cursor:pointer;font-family:'Courier New',monospace;font-size:.65rem;letter-spacing:1px;transition:all .15s;}
@@ -102,6 +153,7 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
 #click-hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:#000000aa;border:1px solid var(--accent);border-radius:20px;padding:3px 12px;font-size:.7rem;color:var(--accent);pointer-events:none;animation:pulse 1.5s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 #music-btn{position:absolute;bottom:10px;right:10px;background:#000000aa;border:1px solid var(--accent);color:var(--accent);padding:3px 8px;border-radius:20px;font-family:'Courier New',monospace;font-size:.65rem;cursor:pointer;z-index:10;}
+#wheel-btn-canvas{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);background:#000000aa;border:1px solid var(--gold);color:var(--gold);padding:3px 10px;border-radius:20px;font-family:'Courier New',monospace;font-size:.65rem;cursor:pointer;z-index:10;display:none;animation:pulse 2s infinite;}
 
 .combo-txt{position:absolute;font-size:1.3rem;font-weight:bold;pointer-events:none;animation:floatCombo .9s ease-out forwards;font-family:'Courier New',monospace;text-shadow:0 0 10px currentColor;white-space:nowrap;}
 @keyframes floatCombo{0%{opacity:1;transform:translateY(0) scale(1)}50%{opacity:1;transform:translateY(-30px) scale(1.2)}100%{opacity:0;transform:translateY(-70px) scale(.8)}}
@@ -123,7 +175,6 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
 .upgrade-btn.can-afford:hover{border-color:var(--accent);background:#1e1010;}
 .upgrade-btn.cannot-afford{opacity:.4;cursor:not-allowed;}
 .upgrade-btn.defense-btn.can-afford{border-color:var(--green);}
-.upgrade-btn.defense-btn.can-afford:hover{border-color:#04a07a;background:#001a12;}
 .upg-name{font-weight:bold;font-size:.85rem;display:flex;justify-content:space-between;}
 .count-badge{background:var(--accent);color:#fff;border-radius:99px;padding:0 6px;font-size:.65rem;}
 .count-badge.def{background:var(--green);color:#000;}
@@ -138,84 +189,6 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
 .stat-val.green{color:var(--green);}
 .stat-val.gold{color:var(--gold);}
 .stat-val.purple{color:var(--purple);}
-.stat-val.red{color:var(--accent);}
-
-/* ── JEFE DIARIO ── */
-#jefe-content{background:var(--panel);border:1px solid var(--border);border-radius:0 8px 8px 8px;padding:16px;}
-#jefe-content h2{color:var(--accent);text-align:center;font-size:1.1rem;letter-spacing:2px;margin-bottom:4px;}
-#jefe-subtitle{color:var(--muted);text-align:center;font-size:.78rem;margin-bottom:14px;}
-#jefe-area{background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;text-align:center;}
-#jefe-nombre{font-size:1.3rem;font-weight:bold;color:var(--accent);margin-bottom:6px;}
-#jefe-icono{font-size:3.5rem;margin-bottom:8px;display:block;}
-#jefe-hp-bar-wrap{background:#333;border-radius:99px;height:16px;overflow:hidden;margin-bottom:5px;position:relative;}
-#jefe-hp-bar{background:linear-gradient(90deg,#e63946,#f72585);height:100%;border-radius:99px;transition:width .5s;}
-#jefe-hp-txt{font-size:.8rem;color:var(--accent);margin-bottom:8px;}
-#jefe-proximo{color:var(--muted);font-size:.78rem;margin-bottom:12px;}
-#jefe-atacar-btn{width:100%;padding:12px;border-radius:8px;border:none;background:var(--accent);color:#fff;font-family:'Courier New',monospace;font-size:1rem;cursor:pointer;font-weight:bold;letter-spacing:1px;transition:all .2s;}
-#jefe-atacar-btn:hover{background:#c1121f;transform:scale(1.02);}
-#jefe-atacar-btn:disabled{background:#333;color:#666;cursor:not-allowed;}
-#jefe-muerto{background:var(--panel2);border:1px solid var(--green);border-radius:8px;padding:12px;text-align:center;display:none;}
-#jefe-muerto h3{color:var(--green);margin-bottom:6px;}
-.jefe-ranking{margin-top:12px;}
-.jefe-ranking h3{color:var(--accent2);font-size:.85rem;margin-bottom:8px;}
-.jefe-rank-item{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:.8rem;}
-.jefe-rank-item:last-child{border-bottom:none;}
-.jefe-rank-pos{color:var(--gold);}
-.jefe-rank-nombre{color:var(--text);}
-.jefe-rank-dano{color:var(--accent);}
-#jefe-mi-dano{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;margin-top:8px;display:flex;justify-content:space-between;font-size:.82rem;}
-
-/* ── CLANES ── */
-#clanes-content{background:var(--panel);border:1px solid var(--border);border-radius:0 8px 8px 8px;padding:16px;}
-#clanes-content h2{color:var(--purple);text-align:center;font-size:1.1rem;letter-spacing:2px;margin-bottom:4px;}
-#clanes-subtitle{color:var(--muted);text-align:center;font-size:.78rem;margin-bottom:14px;}
-
-/* Panel cuando no tiene clan */
-#clan-no-tiene{display:block;}
-.clan-action-box{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:12px;}
-.clan-action-box h3{color:var(--accent2);font-size:.85rem;margin-bottom:10px;letter-spacing:1px;}
-.clan-input{width:100%;padding:9px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.9rem;font-family:'Courier New',monospace;margin-bottom:8px;outline:none;}
-.clan-input:focus{border-color:var(--purple);}
-.clan-btn{width:100%;padding:9px;border-radius:6px;border:none;font-family:'Courier New',monospace;font-size:.85rem;cursor:pointer;font-weight:bold;letter-spacing:1px;}
-.clan-btn.purple{background:var(--purple);color:#fff;}
-.clan-btn.purple:hover{background:#8a3de0;}
-.clan-btn.green{background:var(--green);color:#000;}
-.clan-btn.green:hover{background:#04a07a;}
-.clan-btn.red{background:var(--accent);color:#fff;}
-.clan-btn.red:hover{background:#c1121f;}
-
-/* Panel cuando tiene clan */
-#clan-tiene{display:none;}
-.clan-header-box{background:var(--panel2);border:1px solid var(--purple);border-radius:10px;padding:14px;margin-bottom:10px;}
-.clan-tag-grande{font-size:1.6rem;font-weight:bold;color:var(--purple);letter-spacing:2px;}
-.clan-nombre-grande{font-size:1rem;color:var(--text);margin-top:3px;}
-.clan-lider{font-size:.78rem;color:var(--muted);margin-top:2px;}
-.clan-stats-row{display:flex;gap:16px;margin-top:8px;font-size:.78rem;}
-.clan-stat{color:var(--accent2);}
-
-/* Chat */
-#clan-chat-box{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:10px;}
-#clan-chat-box h3{color:var(--accent2);font-size:.82rem;margin-bottom:8px;letter-spacing:1px;}
-#chat-mensajes{height:180px;overflow-y:auto;margin-bottom:8px;display:flex;flex-direction:column;gap:5px;}
-.chat-msg{font-size:.78rem;padding:5px 8px;border-radius:6px;background:var(--bg);}
-.chat-msg-nombre{font-weight:bold;color:var(--purple);}
-.chat-msg-propio .chat-msg-nombre{color:var(--accent2);}
-.chat-msg-texto{color:var(--text);margin-top:2px;}
-.chat-msg-time{font-size:.65rem;color:var(--muted);margin-top:2px;}
-.chat-input-row{display:flex;gap:6px;}
-#chat-input{flex:1;padding:8px 10px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.8rem;font-family:'Courier New',monospace;outline:none;}
-#chat-input:focus{border-color:var(--purple);}
-#chat-send-btn{padding:8px 14px;border-radius:6px;border:none;background:var(--purple);color:#fff;font-family:'Courier New',monospace;font-size:.8rem;cursor:pointer;}
-
-/* Ranking clanes */
-#clan-ranking-box{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:12px;}
-#clan-ranking-box h3{color:var(--accent2);font-size:.82rem;margin-bottom:8px;letter-spacing:1px;}
-.clan-rank-item{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-size:.8rem;}
-.clan-rank-item:last-child{border-bottom:none;}
-.clan-rank-pos{color:var(--gold);width:20px;}
-.clan-rank-tag{color:var(--purple);font-weight:bold;}
-.clan-rank-nombre{color:var(--text);flex:1;margin:0 8px;}
-.clan-rank-almas{color:var(--accent2);}
 
 /* Misiones */
 #misiones-content{background:var(--panel);border:1px solid var(--border);border-radius:0 8px 8px 8px;padding:16px;}
@@ -235,8 +208,7 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
 /* Mundos */
 #mundos-content{background:var(--panel);border:1px solid var(--border);border-radius:0 8px 8px 8px;padding:16px;}
 #mundos-content h2{color:var(--purple);text-align:center;font-size:1.1rem;letter-spacing:2px;margin-bottom:4px;}
-#mundos-subtitle{color:var(--muted);text-align:center;font-size:.78rem;margin-bottom:14px;}
-.mundo-card{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;transition:border-color .2s;}
+.mundo-card{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;}
 .mundo-card.activo{border-color:var(--purple);}
 .mundo-card.bloqueado{opacity:.5;}
 .mundo-card.desbloqueado{border-color:var(--green);}
@@ -256,6 +228,58 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
 .mundo-btn.ir{background:var(--purple);color:#fff;}
 .mundo-btn.bloqueado-btn{background:#333;color:#666;cursor:not-allowed;}
 
+/* Jefe */
+#jefe-content{background:var(--panel);border:1px solid var(--border);border-radius:0 8px 8px 8px;padding:16px;}
+#jefe-content h2{color:var(--accent);text-align:center;font-size:1.1rem;letter-spacing:2px;margin-bottom:4px;}
+#jefe-area{background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;text-align:center;}
+#jefe-nombre{font-size:1.2rem;font-weight:bold;color:var(--accent);margin-bottom:6px;}
+#jefe-icono{font-size:3.5rem;margin-bottom:8px;display:block;}
+#jefe-hp-bar-wrap{background:#333;border-radius:99px;height:14px;overflow:hidden;margin-bottom:5px;}
+#jefe-hp-bar{background:linear-gradient(90deg,#e63946,#f72585);height:100%;border-radius:99px;transition:width .5s;}
+#jefe-hp-txt{font-size:.78rem;color:var(--accent);margin-bottom:8px;}
+#jefe-proximo{color:var(--muted);font-size:.75rem;margin-bottom:10px;}
+#jefe-atacar-btn{width:100%;padding:11px;border-radius:8px;border:none;background:var(--accent);color:#fff;font-family:'Courier New',monospace;font-size:.95rem;cursor:pointer;font-weight:bold;letter-spacing:1px;}
+#jefe-atacar-btn:disabled{background:#333;color:#666;cursor:not-allowed;}
+#jefe-muerto{background:var(--panel2);border:1px solid var(--green);border-radius:8px;padding:10px;text-align:center;display:none;}
+.jefe-ranking{margin-top:10px;}
+.jefe-ranking h3{color:var(--accent2);font-size:.82rem;margin-bottom:7px;}
+.jefe-rank-item{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:.78rem;}
+#jefe-mi-dano{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:7px 12px;margin-top:8px;display:flex;justify-content:space-between;font-size:.8rem;}
+
+/* Clanes */
+#clanes-content{background:var(--panel);border:1px solid var(--border);border-radius:0 8px 8px 8px;padding:16px;}
+#clanes-content h2{color:var(--purple);text-align:center;font-size:1.1rem;letter-spacing:2px;margin-bottom:4px;}
+#clan-no-tiene{display:block;}
+.clan-action-box{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:12px;}
+.clan-action-box h3{color:var(--accent2);font-size:.85rem;margin-bottom:10px;}
+.clan-input{width:100%;padding:9px 12px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.9rem;font-family:'Courier New',monospace;margin-bottom:8px;outline:none;}
+.clan-btn{width:100%;padding:9px;border-radius:6px;border:none;font-family:'Courier New',monospace;font-size:.85rem;cursor:pointer;font-weight:bold;}
+.clan-btn.purple{background:var(--purple);color:#fff;}
+.clan-btn.green{background:var(--green);color:#000;}
+.clan-btn.red{background:var(--accent);color:#fff;}
+#clan-tiene{display:none;}
+.clan-header-box{background:var(--panel2);border:1px solid var(--purple);border-radius:10px;padding:14px;margin-bottom:10px;}
+.clan-tag-grande{font-size:1.6rem;font-weight:bold;color:var(--purple);}
+.clan-nombre-grande{font-size:1rem;color:var(--text);margin-top:3px;}
+.clan-lider{font-size:.78rem;color:var(--muted);margin-top:2px;}
+.clan-stats-row{display:flex;gap:16px;margin-top:8px;font-size:.78rem;}
+.clan-stat{color:var(--accent2);}
+#clan-chat-box{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:10px;}
+#clan-chat-box h3{color:var(--accent2);font-size:.82rem;margin-bottom:8px;}
+#chat-mensajes{height:160px;overflow-y:auto;margin-bottom:8px;display:flex;flex-direction:column;gap:5px;}
+.chat-msg{font-size:.76rem;padding:4px 7px;border-radius:6px;background:var(--bg);}
+.chat-msg-nombre{font-weight:bold;color:var(--purple);}
+.chat-msg-propio .chat-msg-nombre{color:var(--accent2);}
+.chat-msg-texto{color:var(--text);margin-top:1px;}
+.chat-msg-time{font-size:.62rem;color:var(--muted);margin-top:1px;}
+.chat-input-row{display:flex;gap:6px;}
+#chat-input{flex:1;padding:7px 10px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-size:.78rem;font-family:'Courier New',monospace;outline:none;}
+#chat-send-btn{padding:7px 12px;border-radius:6px;border:none;background:var(--purple);color:#fff;font-family:'Courier New',monospace;font-size:.78rem;cursor:pointer;}
+.clan-rank-item{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:.78rem;}
+.clan-rank-tag{color:var(--purple);font-weight:bold;}
+.clan-rank-nombre{color:var(--text);flex:1;margin:0 7px;}
+.clan-rank-almas{color:var(--accent2);}
+
 /* Ranking */
 #ranking-content{background:var(--panel);border:1px solid var(--border);border-radius:0 8px 8px 8px;padding:16px;}
 #ranking-content h2{color:var(--accent);text-align:center;font-size:1.1rem;letter-spacing:2px;margin-bottom:4px;}
@@ -267,7 +291,6 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
 #ranking-table tr:nth-child(2) td{color:#c0c0c0;}
 #ranking-table tr:nth-child(3) td{color:#cd7f32;}
 .rank-score{text-align:right;color:var(--accent2);font-weight:bold;}
-.rank-prestige{text-align:center;color:var(--gold);}
 .rank-you{color:var(--accent)!important;}
 #refresh-btn{display:block;margin:12px auto 0;padding:7px 22px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);font-family:'Courier New',monospace;font-size:.8rem;cursor:pointer;}
 #ranking-loading{text-align:center;color:var(--muted);font-size:.85rem;padding:18px;}
@@ -276,9 +299,9 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
 #desafios-content{background:var(--panel);border:1px solid var(--border);border-radius:0 8px 8px 8px;padding:16px;}
 #desafios-content h2{color:var(--gold);text-align:center;font-size:1.1rem;letter-spacing:2px;margin-bottom:4px;}
 .challenge-create{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:14px;}
-.challenge-create h3{color:var(--accent2);font-size:.85rem;letter-spacing:1px;margin-bottom:10px;}
+.challenge-create h3{color:var(--accent2);font-size:.85rem;margin-bottom:10px;}
 .dur-btns{display:flex;gap:6px;margin-bottom:10px;}
-.dur-btn{flex:1;padding:7px;border:1px solid var(--border);border-radius:6px;background:var(--panel);color:var(--muted);font-family:'Courier New',monospace;font-size:.75rem;cursor:pointer;text-align:center;transition:all .15s;}
+.dur-btn{flex:1;padding:7px;border:1px solid var(--border);border-radius:6px;background:var(--panel);color:var(--muted);font-family:'Courier New',monospace;font-size:.75rem;cursor:pointer;text-align:center;}
 .dur-btn.selected{border-color:var(--gold);color:var(--gold);background:#1a1a00;}
 #create-challenge-btn{width:100%;padding:9px;border-radius:6px;border:none;background:var(--gold);color:#000;font-family:'Courier New',monospace;font-size:.85rem;cursor:pointer;font-weight:bold;}
 #create-challenge-btn:disabled{background:#444;color:#666;cursor:not-allowed;}
@@ -289,7 +312,7 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
 .challenge-item{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:9px 11px;margin-bottom:5px;font-size:.78rem;}
 .challenge-item .ch-item-title{color:var(--gold);font-weight:bold;margin-bottom:3px;}
 .challenge-item .ch-item-info{color:var(--muted);}
-.challenge-item .ch-item-scores{display:flex;justify-content:space-between;margin-top:5px;font-size:.75rem;}
+.challenge-item .ch-item-scores{display:flex;justify-content:space-between;margin-top:5px;}
 .challenge-item .ch-item-me{color:var(--green);}
 .challenge-item .ch-item-rival{color:var(--accent2);}
 .challenge-item .ch-item-winner{color:var(--gold);font-weight:bold;text-align:center;margin-top:3px;}
@@ -318,18 +341,14 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
     <p>Tu ninja fue derrotado... pero la leyenda continúa.</p>
     <div class="death-stats">
       <div class="death-stat"><div class="death-stat-val" id="ds-almas">0</div><div class="death-stat-lbl">Almas totales</div></div>
-      <div class="death-stat"><div class="death-stat-val" id="ds-kills">0</div><div class="death-stat-lbl">Enemigos caídos</div></div>
+      <div class="death-stat"><div class="death-stat-val" id="ds-kills">0</div><div class="death-stat-lbl">Kills</div></div>
       <div class="death-stat"><div class="death-stat-val" id="ds-nivel">1</div><div class="death-stat-lbl">Nivel alcanzado</div></div>
       <div class="death-stat"><div class="death-stat-val" id="ds-mundo">1</div><div class="death-stat-lbl">Mundo alcanzado</div></div>
     </div>
     <h3>⚡ ELEGÍ TU LEGADO</h3>
     <div class="prestige-cards">
-      <div class="prestige-card" id="card-almas" onclick="selectPrestige('almas')">
-        <div class="pc-icon">🌙</div><div class="pc-name">ALMA ETERNA</div><div class="pc-bonus">+0.2 almas/seg</div>
-      </div>
-      <div class="prestige-card" id="card-dano" onclick="selectPrestige('dano')">
-        <div class="pc-icon">⚔️</div><div class="pc-name">FILO ETERNO</div><div class="pc-bonus">+0.5 daño/click</div>
-      </div>
+      <div class="prestige-card" id="card-almas" onclick="selectPrestige('almas')"><div class="pc-icon">🌙</div><div class="pc-name">ALMA ETERNA</div><div class="pc-bonus">+0.2 almas/seg</div></div>
+      <div class="prestige-card" id="card-dano" onclick="selectPrestige('dano')"><div class="pc-icon">⚔️</div><div class="pc-name">FILO ETERNO</div><div class="pc-bonus">+0.5 daño/click</div></div>
     </div>
     <button class="modal-btn gold" id="prestige-btn" onclick="doPrestige()" disabled>[ ELEGÍ UNA OPCIÓN ]</button>
     <button class="modal-btn secondary" onclick="restartOnly()">[ Reiniciar sin prestige ]</button>
@@ -339,30 +358,19 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
 <div id="challenge-hud">
   <div class="ch-title">⚔️ DESAFÍO</div>
   <div class="ch-timer" id="ch-timer-display">00:00</div>
-  <div class="ch-scores">
-    <div class="ch-me">Vos: <span id="ch-me-score">0</span></div>
-    <div class="ch-rival">Rival: <span id="ch-rival-score">?</span></div>
-  </div>
+  <div class="ch-scores"><div class="ch-me">Vos: <span id="ch-me-score">0</span></div><div class="ch-rival">Rival: <span id="ch-rival-score">?</span></div></div>
 </div>
-
 <div id="challenge-screen">
   <div id="challenge-box">
-    <h2>⚔️ ¡TE RETARON!</h2>
-    <p>Alguien te desafió a una batalla de almas</p>
-    <div class="ch-info">
-      <div class="ch-retador" id="ch-retador-nombre">???</div>
-      <div class="ch-dur" id="ch-duracion-txt">10 minutos</div>
-      <div class="ch-regla">🏆 Gana quien junte más almas</div>
-    </div>
+    <h2>⚔️ ¡TE RETARON!</h2><p>Desafío de almas</p>
+    <div class="ch-info"><div class="ch-retador" id="ch-retador-nombre">???</div><div class="ch-dur" id="ch-duracion-txt">10 min</div><div class="ch-regla">🏆 Gana quien junte más almas</div></div>
     <button class="modal-btn gold" onclick="acceptChallenge()">[ ¡ACEPTAR! ]</button>
     <button class="modal-btn secondary" onclick="declineChallenge()">[ Rechazar ]</button>
   </div>
 </div>
-
 <div id="challenge-result">
   <div id="result-box">
-    <h2 id="result-title">🏆 RESULTADO</h2>
-    <p id="result-desc" style="color:var(--muted);font-size:.82rem;margin-bottom:6px;"></p>
+    <h2 id="result-title">🏆</h2><p id="result-desc" style="color:var(--muted);font-size:.82rem;margin-bottom:6px;"></p>
     <div class="result-scores">
       <div class="result-score" id="result-me-box"><div class="result-score-val" id="result-me-score">0</div><div class="result-score-lbl" id="result-me-lbl">Vos</div></div>
       <div class="result-score" id="result-rival-box"><div class="result-score-val" id="result-rival-score">0</div><div class="result-score-lbl" id="result-rival-lbl">Rival</div></div>
@@ -370,23 +378,53 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
     <button class="modal-btn primary" onclick="closeResult()">[ CERRAR ]</button>
   </div>
 </div>
+<div id="world-transition"><h2 id="wt-nombre">🌍</h2><p id="wt-desc"></p></div>
 
-<div id="world-transition">
-  <h2 id="wt-nombre">🌍 NUEVO MUNDO</h2>
-  <p id="wt-desc">Cargando...</p>
+<!-- RUEDA MODAL -->
+<div id="wheel-modal">
+  <div id="wheel-box">
+    <h2>🎰 RUEDA DE LA FORTUNA</h2>
+    <div id="wheel-subtitle">¡Girá y ganá premios especiales!</div>
+    <div id="wheel-canvas-wrap">
+      <div id="wheel-arrow">▼</div>
+      <canvas id="wheel-canvas" width="260" height="260"></canvas>
+    </div>
+    <div id="wheel-result">
+      <div id="wheel-result-txt"></div>
+      <div id="wheel-result-desc"></div>
+    </div>
+    <div id="wheel-timer" style="margin-bottom:8px;"></div>
+    <button id="wheel-spin-btn" onclick="girarRueda()">[ 🎰 GIRAR ]</button>
+    <button id="wheel-close-btn" onclick="cerrarRueda()">[ CERRAR ]</button>
+  </div>
+</div>
+
+<!-- CRAFTEO MODAL -->
+<div id="craft-modal">
+  <div id="craft-box">
+    <h2>⚗️ TALLER DE CRAFTEO</h2>
+    <div id="craft-subtitle">Combiná materiales para crear objetos poderosos</div>
+    <div class="craft-mats">
+      <h3>[ MIS MATERIALES ]</h3>
+      <div class="mats-grid" id="mats-grid"></div>
+    </div>
+    <div class="craft-recipes" id="craft-recipes"></div>
+    <button id="craft-close-btn" onclick="cerrarCrafteo()">[ CERRAR ]</button>
+  </div>
 </div>
 
 <div id="app">
   <header>
     <h1>⚔️ Ninja Incremental</h1>
-    <p>Matá enemigos · Conquistá mundos · Sobreviví</p>
+    <p>Matá enemigos · Craftéa items · Conquistá mundos</p>
     <div class="header-badges">
       <div class="hbadge gold" id="prestige-badge" style="display:none">👑 P<span id="prestige-count">0</span></div>
       <div class="hbadge purple" id="world-badge">🌍 Bosque Ninja</div>
       <div class="hbadge green" id="clan-badge" style="display:none">🏯 <span id="clan-badge-txt">-</span></div>
+      <div class="hbadge orange" id="wheel-badge" onclick="abrirRueda()" style="display:none">🎰 ¡GIRÁ!</div>
+      <div class="hbadge purple" id="craft-badge" onclick="abrirCrafteo()" style="cursor:pointer">⚗️ CRAFTEO</div>
     </div>
   </header>
-
   <div class="tabs">
     <button class="tab-btn active" onclick="showTab('juego',this)">⚔️</button>
     <button class="tab-btn" onclick="showTab('misiones',this)">🎯</button>
@@ -397,7 +435,6 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
     <button class="tab-btn" onclick="showTab('desafios',this)">⚡</button>
   </div>
 
-  <!-- JUEGO -->
   <div id="tab-juego" class="tab-content active">
     <div id="game-canvas-wrap">
       <canvas id="gameCanvas" height="220"></canvas>
@@ -409,6 +446,7 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
       <div id="bonus-hud">⚡ x2 ALMAS!</div>
       <div id="world-hud">🌍 <span id="world-hud-txt">Bosque Ninja</span></div>
       <div id="click-hint">TOCA PARA ATACAR</div>
+      <button id="wheel-btn-canvas" onclick="abrirRueda()">🎰 ¡GIRÁ!</button>
       <button id="music-btn" onclick="toggleMusica()">🎵</button>
     </div>
     <div id="game-grid">
@@ -433,11 +471,11 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
         <div class="stat-row"><span class="stat-label">Kills mundo</span><span class="stat-val purple" id="stat-mundo-kills">0/50</span></div>
         <div class="stat-row"><span class="stat-label">Nivel</span><span class="stat-val" id="stat-nivel">1</span></div>
         <div class="stat-row"><span class="stat-label">Prestige</span><span class="stat-val gold" id="stat-prestige">0</span></div>
+        <div class="stat-row"><span class="stat-label">Item equipado</span><span class="stat-val purple" id="stat-item">Ninguno</span></div>
       </div>
     </div>
   </div>
 
-  <!-- MISIONES -->
   <div id="tab-misiones" class="tab-content">
     <div id="misiones-content">
       <h2>🎯 MISIONES DIARIAS</h2>
@@ -446,82 +484,61 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
     </div>
   </div>
 
-  <!-- MUNDOS -->
   <div id="tab-mundos" class="tab-content">
     <div id="mundos-content">
       <h2>🌍 MUNDOS</h2>
-      <div id="mundos-subtitle">Matá enemigos para avanzar al siguiente mundo</div>
+      <div style="color:var(--muted);text-align:center;font-size:.78rem;margin-bottom:14px">Matá enemigos para avanzar</div>
       <div id="mundos-lista"></div>
     </div>
   </div>
 
-  <!-- JEFE DIARIO -->
   <div id="tab-jefe" class="tab-content">
     <div id="jefe-content">
       <h2>👹 JEFE DIARIO</h2>
-      <div id="jefe-subtitle">¡Entre todos los jugadores deben derrotarlo!</div>
+      <div style="color:var(--muted);text-align:center;font-size:.78rem;margin-bottom:12px">¡Entre todos deben derrotarlo! (cada 10 min en modo test)</div>
       <div id="jefe-area">
         <span id="jefe-icono">👹</span>
         <div id="jefe-nombre">Cargando...</div>
         <div id="jefe-hp-bar-wrap"><div id="jefe-hp-bar" style="width:100%"></div></div>
         <div id="jefe-hp-txt">HP: ? / ?</div>
-        <div id="jefe-proximo">⏱️ Próximo jefe en: <span id="jefe-timer">--:--</span></div>
+        <div id="jefe-proximo">Próximo jefe en: <span id="jefe-timer">--:--</span></div>
         <button id="jefe-atacar-btn" onclick="atacarJefe()" disabled>[ ATACAR JEFE ]</button>
-        <div id="jefe-muerto">
-          <h3>💀 ¡JEFE DERROTADO!</h3>
-          <p style="color:var(--muted);font-size:.82rem">El clan lo liquidó. Próximo jefe en <span id="jefe-revive-timer">--:--</span></p>
-        </div>
+        <div id="jefe-muerto"><h3 style="color:var(--green)">💀 ¡DERROTADO!</h3><p style="color:var(--muted);font-size:.78rem">Próximo en <span id="jefe-revive-timer">--:--</span></p></div>
       </div>
-      <div id="jefe-mi-dano">
-        <span style="color:var(--muted)">Mi daño total al jefe:</span>
-        <span style="color:var(--accent);font-weight:bold" id="jefe-mi-dano-txt">0</span>
-      </div>
-      <div class="jefe-ranking">
-        <h3>[ TOP DAÑO AL JEFE ]</h3>
-        <div id="jefe-ranking-lista"></div>
-      </div>
+      <div id="jefe-mi-dano"><span style="color:var(--muted)">Mi daño:</span><span style="color:var(--accent);font-weight:bold" id="jefe-mi-dano-txt">0</span></div>
+      <div class="jefe-ranking"><h3>[ TOP DAÑO ]</h3><div id="jefe-ranking-lista"></div></div>
     </div>
   </div>
 
-  <!-- CLANES -->
   <div id="tab-clanes" class="tab-content">
     <div id="clanes-content">
       <h2>🏯 CLANES</h2>
-      <div id="clanes-subtitle">Unite a un clan o creá el tuyo</div>
-
-      <!-- Sin clan -->
       <div id="clan-no-tiene">
         <div class="clan-action-box">
           <h3>[ CREAR CLAN ]</h3>
           <input class="clan-input" id="clan-nuevo-nombre" type="text" placeholder="Nombre del clan..." maxlength="20"/>
-          <input class="clan-input" id="clan-nuevo-tag" type="text" placeholder="Tag [3-4 letras]..." maxlength="4"/>
+          <input class="clan-input" id="clan-nuevo-tag" type="text" placeholder="Tag [2-4 letras]..." maxlength="4"/>
           <button class="clan-btn purple" onclick="crearClan()">[ CREAR ]</button>
         </div>
         <div class="clan-action-box">
           <h3>[ UNIRSE A UN CLAN ]</h3>
-          <input class="clan-input" id="clan-unirse-id" type="text" placeholder="ID del clan..." maxlength="20"/>
+          <input class="clan-input" id="clan-unirse-id" type="text" placeholder="ID del clan..." maxlength="30"/>
           <button class="clan-btn green" onclick="unirseClan()">[ UNIRSE ]</button>
         </div>
-        <div id="clan-ranking-box">
-          <h3>[ RANKING DE CLANES ]</h3>
-          <div id="clan-ranking-lista"><div style="color:var(--muted);font-size:.8rem;padding:8px">Cargando...</div></div>
+        <div style="background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:12px;">
+          <h3 style="color:var(--accent2);font-size:.82rem;margin-bottom:8px">[ RANKING CLANES ]</h3>
+          <div id="clan-ranking-lista"><div style="color:var(--muted);font-size:.8rem;padding:6px">Cargando...</div></div>
         </div>
       </div>
-
-      <!-- Con clan -->
       <div id="clan-tiene">
         <div class="clan-header-box">
           <div class="clan-tag-grande" id="clan-tag-display">[???]</div>
-          <div class="clan-nombre-grande" id="clan-nombre-display">Nombre</div>
+          <div class="clan-nombre-grande" id="clan-nombre-display">-</div>
           <div class="clan-lider">👑 Líder: <span id="clan-lider-display">-</span></div>
-          <div class="clan-stats-row">
-            <span class="clan-stat">💰 <span id="clan-almas-display">0</span> almas</span>
-            <span class="clan-stat">👥 <span id="clan-miembros-display">0</span> miembros</span>
-          </div>
-          <div style="margin-top:8px;font-size:.72rem;color:var(--muted)">ID: <span id="clan-id-display" style="color:var(--purple)">-</span></div>
-          <button class="clan-btn red" style="margin-top:10px" onclick="salirClan()">[ ABANDONAR CLAN ]</button>
+          <div class="clan-stats-row"><span class="clan-stat">💰 <span id="clan-almas-display">0</span></span><span class="clan-stat">👥 <span id="clan-miembros-display">0</span> miembros</span></div>
+          <div style="margin-top:6px;font-size:.7rem;color:var(--muted)">ID: <span id="clan-id-display" style="color:var(--purple)">-</span></div>
+          <button class="clan-btn red" style="margin-top:10px" onclick="salirClan()">[ ABANDONAR ]</button>
         </div>
-
         <div id="clan-chat-box">
           <h3>[ CHAT DEL CLAN ]</h3>
           <div id="chat-mensajes"></div>
@@ -530,18 +547,14 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
             <button id="chat-send-btn" onclick="enviarMensaje()">▶</button>
           </div>
         </div>
-
-        <div id="clan-ranking-box-2">
-          <div style="background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:12px;">
-            <h3 style="color:var(--accent2);font-size:.82rem;margin-bottom:8px;letter-spacing:1px">[ MIEMBROS DEL CLAN ]</h3>
-            <div id="clan-miembros-lista"></div>
-          </div>
+        <div style="background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-top:10px;">
+          <h3 style="color:var(--accent2);font-size:.82rem;margin-bottom:8px">[ MIEMBROS ]</h3>
+          <div id="clan-miembros-lista"></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- RANKING -->
   <div id="tab-ranking" class="tab-content">
     <div id="ranking-content">
       <h2>🏆 RANKING MUNDIAL</h2>
@@ -555,7 +568,6 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
     </div>
   </div>
 
-  <!-- DESAFÍOS -->
   <div id="tab-desafios" class="tab-content">
     <div id="desafios-content">
       <h2>⚡ DESAFÍOS</h2>
@@ -566,12 +578,12 @@ header p{color:var(--muted);font-size:.8rem;margin-top:3px;}
           <div class="dur-btn" onclick="selectDur(1800,this)">30 min</div>
           <div class="dur-btn" onclick="selectDur(3600,this)">1 hora</div>
         </div>
-        <button id="create-challenge-btn" onclick="createChallenge()" disabled>[ SELECCIONÁ DURACIÓN ]</button>
+        <button id="create-challenge-btn" onclick="createChallenge()" disabled>[ SELECCIONÁ ]</button>
       </div>
       <div id="challenge-link-box">
         <h3>✅ Mandá este link:</h3>
         <textarea id="challenge-link-txt" readonly></textarea>
-        <button id="copy-link-btn" onclick="copyLink()">[ COPIAR LINK ]</button>
+        <button id="copy-link-btn" onclick="copyLink()">[ COPIAR ]</button>
       </div>
       <div id="active-challenges">
         <h3 style="color:var(--accent2);font-size:.82rem;margin-bottom:7px">[ MIS DESAFÍOS ]</h3>
@@ -588,50 +600,137 @@ var SB_KEY='sb_publishable_abNJsEqejy-ePUtIqWEzNg_1hVHsxW9';
 var SAVE_KEY='ninjaV5';
 var GAME_VERSION='v4';
 
+// ══ MUNDOS ══
 var MUNDOS=[
-  {id:1,nombre:'🌲 Bosque Ninja',     desc:'El bosque donde todo ninja comienza.',       killsNecesarios:50,   multAlmas:1,  multDano:1,  skyTop:[13,13,26],  skyBot:[26,26,46],  groundTop:[26,40,16],treeColor:[13,27,42], mtColor:[22,33,62]},
-  {id:2,nombre:'🏔️ Montaña Sagrada', desc:'Picos helados con guerreros ancestrales.',    killsNecesarios:150,  multAlmas:2,  multDano:1.5,skyTop:[10,20,40],  skyBot:[20,40,80],  groundTop:[20,30,40],treeColor:[10,20,30], mtColor:[30,50,80]},
-  {id:3,nombre:'🌋 Volcán Maldito',   desc:'Tierra de fuego donde acechan demonios.',    killsNecesarios:400,  multAlmas:4,  multDano:2.5,skyTop:[40,10,10],  skyBot:[80,20,10],  groundTop:[60,20,10],treeColor:[50,10,10], mtColor:[80,30,10]},
-  {id:4,nombre:'🌊 Mar Eterno',        desc:'Aguas infinitas con criaturas del abismo.',  killsNecesarios:1000, multAlmas:8,  multDano:4,  skyTop:[5,20,50],   skyBot:[10,40,100], groundTop:[10,30,60],treeColor:[5,15,40],  mtColor:[15,40,80]},
-  {id:5,nombre:'🌙 Reino Oscuro',      desc:'El dominio final de la oscuridad.',          killsNecesarios:2500, multAlmas:20, multDano:8,  skyTop:[5,0,15],    skyBot:[10,0,30],   groundTop:[10,5,20], treeColor:[5,0,10],   mtColor:[15,5,25]},
-  {id:6,nombre:'⭐ Dimensión Astral',  desc:'Más allá de la realidad.',                   killsNecesarios:9999, multAlmas:50, multDano:15, skyTop:[20,5,40],   skyBot:[40,10,80],  groundTop:[30,10,50],treeColor:[15,5,30],  mtColor:[35,10,60]},
+  {id:1,nombre:'🌲 Bosque Ninja',     desc:'El bosque donde todo ninja comienza.',     killsNecesarios:50,   multAlmas:1,  multDano:1,  skyTop:[13,13,26],skyBot:[26,26,46],groundTop:[26,40,16],treeColor:[13,27,42],mtColor:[22,33,62]},
+  {id:2,nombre:'🏔️ Montaña Sagrada', desc:'Picos helados con guerreros ancestrales.',  killsNecesarios:150,  multAlmas:2,  multDano:1.5,skyTop:[10,20,40],skyBot:[20,40,80],groundTop:[20,30,40],treeColor:[10,20,30],mtColor:[30,50,80]},
+  {id:3,nombre:'🌋 Volcán Maldito',   desc:'Tierra de fuego donde acechan demonios.',  killsNecesarios:400,  multAlmas:4,  multDano:2.5,skyTop:[40,10,10],skyBot:[80,20,10],groundTop:[60,20,10],treeColor:[50,10,10],mtColor:[80,30,10]},
+  {id:4,nombre:'🌊 Mar Eterno',        desc:'Aguas infinitas con criaturas del abismo.',killsNecesarios:1000, multAlmas:8,  multDano:4,  skyTop:[5,20,50],skyBot:[10,40,100],groundTop:[10,30,60],treeColor:[5,15,40],mtColor:[15,40,80]},
+  {id:5,nombre:'🌙 Reino Oscuro',      desc:'El dominio final de la oscuridad.',        killsNecesarios:2500, multAlmas:20, multDano:8,  skyTop:[5,0,15],skyBot:[10,0,30],groundTop:[10,5,20],treeColor:[5,0,10],mtColor:[15,5,25]},
+  {id:6,nombre:'⭐ Dimensión Astral',  desc:'Más allá de la realidad.',                 killsNecesarios:9999, multAlmas:50, multDano:15, skyTop:[20,5,40],skyBot:[40,10,80],groundTop:[30,10,50],treeColor:[15,5,30],mtColor:[35,10,60]},
 ];
 
 var JEFES=[
-  {nombre:'👹 Ogro Ninja',       icono:'👹',hpBase:50000},
-  {nombre:'🐉 Dragón Oscuro',    icono:'🐉',hpBase:80000},
+  {nombre:'👹 Ogro Ninja',icono:'👹',hpBase:50000},
+  {nombre:'🐉 Dragón Oscuro',icono:'🐉',hpBase:80000},
   {nombre:'💀 Señor de la Muerte',icono:'💀',hpBase:120000},
-  {nombre:'🌑 Dios Sombra',      icono:'🌑',hpBase:200000},
+  {nombre:'🌑 Dios Sombra',icono:'🌑',hpBase:200000},
 ];
 
+// ══ RUEDA DE LA FORTUNA ══
+var WHEEL_PREMIOS=[
+  {label:'💰 x2 Almas',    color:'#e63946', tipo:'almas_x2',    valor:10,    peso:20},
+  {label:'⚔️ +5 Daño',     color:'#f4a261', tipo:'dano_bonus',  valor:5,     peso:18},
+  {label:'🧪 Materiales',  color:'#a259ff', tipo:'materiales',  valor:10,    peso:20},
+  {label:'💎 x3 Almas',    color:'#ffd700', tipo:'almas_x3',    valor:30,    peso:8},
+  {label:'🛡️ +50 HP',      color:'#06d6a0', tipo:'hp_bonus',    valor:50,    peso:16},
+  {label:'⚡ x5 Almas',    color:'#f72585', tipo:'almas_x5',    valor:60,    peso:5},
+  {label:'🌟 +10 Daño',    color:'#7209b7', tipo:'dano_bonus',  valor:10,    peso:8},
+  {label:'💀 Nada',        color:'#2a3040', tipo:'nada',        valor:0,     peso:5},
+];
+var WHEEL_COOLDOWN=3600000; // 1 hora (milisegundos)
+var wheelUltimaSpin=0;
+var wheelGirando=false;
+var wheelAngulo=0;
+var wheelCanvas=null,wheelCtx=null;
+
+// ══ MATERIALES Y CRAFTEO ══
+var MATERIALES_DEF=[
+  {id:'hierro',    nombre:'Hierro',    icono:'🔩', desc:'Metal común de los enemigos.'},
+  {id:'cristal',   nombre:'Cristal',   icono:'💎', desc:'Fragmento brillante.'},
+  {id:'sombra',    nombre:'Sombra',    icono:'🌑', desc:'Esencia oscura del más allá.'},
+  {id:'fuego',     nombre:'Fuego',     icono:'🔥', desc:'Llama de los volcanes.'},
+  {id:'alma_pura', nombre:'Alma Pura', icono:'✨', desc:'Energía concentrada.'},
+  {id:'dragon_esc',nombre:'Escama',    icono:'🐉', desc:'Escama del dragón ninja.'},
+  {id:'astral',    nombre:'Polvo Astral',icono:'⭐',desc:'Polvo de las estrellas.'},
+  {id:'runa',      nombre:'Runa',      icono:'🔯', desc:'Runa mágica ancestral.'},
+];
+
+var RECETAS=[
+  {
+    id:'katana_oscura',
+    nombre:'⚔️ Katana Oscura',
+    desc:'Una katana forjada en sombras. +20% daño permanente.',
+    ingredientes:{hierro:5,sombra:3,cristal:2},
+    efecto:{tipo:'mult_dano',valor:0.2},
+    crafteado:false,equipado:false
+  },
+  {
+    id:'amuleto_alma',
+    nombre:'✨ Amuleto del Alma',
+    desc:'Absorbe almas del ambiente. +0.5 almas/seg permanente.',
+    ingredientes:{alma_pura:5,cristal:3,runa:2},
+    efecto:{tipo:'bonus_mps',valor:0.5},
+    crafteado:false,equipado:false
+  },
+  {
+    id:'escudo_dragon',
+    nombre:'🐉 Escudo Dragón',
+    desc:'Forjado con escamas. +100 HP máximo.',
+    ingredientes:{dragon_esc:3,hierro:5,fuego:4},
+    efecto:{tipo:'bonus_hp',valor:100},
+    crafteado:false,equipado:false
+  },
+  {
+    id:'corona_shogun',
+    nombre:'👑 Corona del Shogun',
+    desc:'La corona legendaria. +50% a todo (daño y almas).',
+    ingredientes:{astral:5,runa:5,alma_pura:5,dragon_esc:5},
+    efecto:{tipo:'mult_todo',valor:0.5},
+    crafteado:false,equipado:false
+  },
+  {
+    id:'pocion_fuego',
+    nombre:'🧪 Poción de Fuego',
+    desc:'Consumible: da x3 almas por 5 minutos.',
+    ingredientes:{fuego:5,alma_pura:3},
+    efecto:{tipo:'pocion_x3',valor:300000},
+    crafteado:false,equipado:false
+  },
+  {
+    id:'anillo_sombra',
+    nombre:'💍 Anillo Sombra',
+    desc:'+15 defensa y regeneración +3 HP/seg.',
+    ingredientes:{sombra:5,cristal:4,runa:3},
+    efecto:{tipo:'tanque',valor:1},
+    crafteado:false,equipado:false
+  },
+];
+
+var materiales={}; // {hierro:5, cristal:2, ...}
+var itemEquipado=null; // id de la receta equipada
+var craftBonus={mult_dano:0,bonus_mps:0,bonus_hp:0,mult_todo:0,tanque:0};
+var pocionActiva=false,pocionTimer=0;
+
+// ══ MEJORAS ══
 var UPGRADES_PODER=[
-  {id:'shuriken',name:'🌟 Shuriken',      desc:'Shurikens automáticos.',     baseCost:10,    mps:.1,  cpc:0},
-  {id:'scroll',  name:'📜 Pergamino',      desc:'+1 daño por click.',         baseCost:50,    mps:0,   cpc:1},
-  {id:'sombra',  name:'👤 Clon Sombra',    desc:'Clon que lucha solo.',        baseCost:120,   mps:.5,  cpc:0},
-  {id:'katana',  name:'⚔️ Katana Sagrada', desc:'Más almas por segundo.',      baseCost:300,   mps:2,   cpc:0},
-  {id:'runa',    name:'🔯 Runa Ninja',     desc:'+5 daño por click.',         baseCost:500,   mps:0,   cpc:5},
-  {id:'dojo',    name:'🏯 Dojo Oculto',    desc:'Ninjas que generan almas.',   baseCost:1200,  mps:8,   cpc:0},
-  {id:'dragon',  name:'🐉 Dragón Ninja',   desc:'Dragón de almas.',            baseCost:4000,  mps:25,  cpc:0},
-  {id:'sensei',  name:'🧙 Sensei Eterno',  desc:'Amplifica todo.',             baseCost:12000, mps:80,  cpc:0},
-  {id:'shogun',  name:'👑 Shogun Oscuro',  desc:'+50 daño permanente.',        baseCost:20000, mps:0,   cpc:50},
+  {id:'shuriken',name:'🌟 Shuriken',     desc:'Shurikens automáticos.',    baseCost:10,    mps:.1, cpc:0},
+  {id:'scroll',  name:'📜 Pergamino',     desc:'+1 daño por click.',        baseCost:50,    mps:0,  cpc:1},
+  {id:'sombra',  name:'👤 Clon Sombra',   desc:'Clon que lucha solo.',      baseCost:120,   mps:.5, cpc:0},
+  {id:'katana',  name:'⚔️ Katana',        desc:'Más almas/seg.',            baseCost:300,   mps:2,  cpc:0},
+  {id:'runa',    name:'🔯 Runa',          desc:'+5 daño/click.',           baseCost:500,   mps:0,  cpc:5},
+  {id:'dojo',    name:'🏯 Dojo',          desc:'Ninjas generadores.',       baseCost:1200,  mps:8,  cpc:0},
+  {id:'dragon',  name:'🐉 Dragón',        desc:'Dragón de almas.',          baseCost:4000,  mps:25, cpc:0},
+  {id:'sensei',  name:'🧙 Sensei',        desc:'Amplifica todo.',           baseCost:12000, mps:80, cpc:0},
+  {id:'shogun',  name:'👑 Shogun',        desc:'+50 daño.',                baseCost:20000, mps:0,  cpc:50},
 ];
 var UPGRADES_VIDA=[
-  {id:'venda',    name:'🩹 Venda',     desc:'+20 HP.',       baseCost:30,   hp:20,  def:0,  regen:0},
-  {id:'armadura', name:'🛡️ Armadura', desc:'+2 defensa.',   baseCost:80,   hp:0,   def:2,  regen:0},
-  {id:'pocion',   name:'🧪 Poción',   desc:'+0.5 HP/seg.',  baseCost:150,  hp:0,   def:0,  regen:.5},
-  {id:'escudo',   name:'⛩️ Escudo',   desc:'+50 HP.',       baseCost:400,  hp:50,  def:0,  regen:0},
-  {id:'cota',     name:'⚙️ Cota',     desc:'+5 defensa.',   baseCost:800,  hp:0,   def:5,  regen:0},
-  {id:'sanacion', name:'✨ Sanación', desc:'+2 HP/seg.',    baseCost:1500, hp:0,   def:0,  regen:2},
-  {id:'fortaleza',name:'🏯 Fortaleza',desc:'+150 HP.',      baseCost:3000, hp:150, def:0,  regen:0},
-  {id:'diamante', name:'💎 Diamante', desc:'+15 defensa.',  baseCost:8000, hp:0,   def:15, regen:0},
-  {id:'inmortal', name:'👑 Inmortal', desc:'+8 HP/seg.',    baseCost:15000,hp:0,   def:0,  regen:8},
+  {id:'venda',    name:'🩹 Venda',   desc:'+20 HP.',      baseCost:30,   hp:20,  def:0,  regen:0},
+  {id:'armadura', name:'🛡️ Armad.', desc:'+2 defensa.',  baseCost:80,   hp:0,   def:2,  regen:0},
+  {id:'pocion',   name:'🧪 Poción', desc:'+0.5 HP/seg.', baseCost:150,  hp:0,   def:0,  regen:.5},
+  {id:'escudo',   name:'⛩️ Escudo', desc:'+50 HP.',      baseCost:400,  hp:50,  def:0,  regen:0},
+  {id:'cota',     name:'⚙️ Cota',   desc:'+5 defensa.',  baseCost:800,  hp:0,   def:5,  regen:0},
+  {id:'sanacion', name:'✨ Sanac.', desc:'+2 HP/seg.',   baseCost:1500, hp:0,   def:0,  regen:2},
+  {id:'fortaleza',name:'🏯 Fortal.',desc:'+150 HP.',     baseCost:3000, hp:150, def:0,  regen:0},
+  {id:'diamante', name:'💎 Diam.',  desc:'+15 defensa.', baseCost:8000, hp:0,   def:15, regen:0},
+  {id:'inmortal', name:'👑 Inmort.',desc:'+8 HP/seg.',   baseCost:15000,hp:0,   def:0,  regen:8},
 ];
 var MILESTONES=[{at:100,msg:'⚔️ ¡100 almas!'},{at:500,msg:'🌟 ¡500 almas!'},{at:1000,msg:'🔯 ¡1.000 almas!'},{at:5000,msg:'🏯 ¡5.000 almas!'},{at:10000,msg:'🐉 ¡10.000 almas!'},{at:50000,msg:'👑 ¡50.000 almas!'}];
 
-// ── ESTADO ──
+// ══ ESTADO ══
 var nombreJugador='',mana=0,totalMana=0,totalClicks=0;
 var counts={},countsDef={},milestoneSeen={};
-var hp=100,maxHp=100;
+var hp=100;
 var prestigeCount=0,prestigeBonusMps=0,prestigeBonusCpc=0;
 var nivelEnemigo=1,nivelTimer=0,NIVEL_INTERVALO=30000;
 var bonusActivo=false,bonusTimer=0,BONUS_DURACION=10000;
@@ -640,26 +739,28 @@ var mundoActual=1,killsEnMundoActual=0;
 var misionesHoy=[],misionesProgreso={kills:0,almas:0,kills_boss:0,mundo:1,nivel:1};
 var misionesCompletadas=[false,false,false],misionesAlmasReclamadas=[false,false,false],misionesDate='';
 var desafioActivo=null,desafioAlmasInicio=0,desafioInterval=null,duracionSeleccionada=0;
-// Jefe
-var jefeData=null,jefeMiDano=0,jefeInterval=null;
-// Clan
-var miClan=null; // {id, nombre, tag, lider}
+var jefeData=null,jefeMiDano=0;
+var miClan=null;
 var chatInterval=null;
 
 function loadState(){
   try{
     var s=JSON.parse(localStorage.getItem(SAVE_KEY));
     if(s){
-      nombreJugador=s.nombreJugador||'';mana=s.mana||0;totalMana=s.totalMana||0;
-      totalClicks=s.totalClicks||0;counts=s.counts||{};countsDef=s.countsDef||{};
-      milestoneSeen=s.milestoneSeen||{};hp=s.hp||100;
+      nombreJugador=s.nombreJugador||'';mana=s.mana||0;totalMana=s.totalMana||0;totalClicks=s.totalClicks||0;
+      counts=s.counts||{};countsDef=s.countsDef||{};milestoneSeen=s.milestoneSeen||{};hp=s.hp||100;
       prestigeCount=s.prestigeCount||0;prestigeBonusMps=s.prestigeBonusMps||0;prestigeBonusCpc=s.prestigeBonusCpc||0;
       nivelEnemigo=s.nivelEnemigo||1;mundoActual=s.mundoActual||1;killsEnMundoActual=s.killsEnMundoActual||0;
       misionesProgreso=s.misionesProgreso||{kills:0,almas:0,kills_boss:0,mundo:1,nivel:1};
       misionesCompletadas=s.misionesCompletadas||[false,false,false];
       misionesAlmasReclamadas=s.misionesAlmasReclamadas||[false,false,false];
-      misionesDate=s.misionesDate||'';
-      miClan=s.miClan||null;
+      misionesDate=s.misionesDate||'';miClan=s.miClan||null;
+      wheelUltimaSpin=s.wheelUltimaSpin||0;
+      materiales=s.materiales||{};
+      itemEquipado=s.itemEquipado||null;
+      // Restaurar recetas crafteadas/equipadas
+      if(s.recetasCrafteadas){s.recetasCrafteadas.forEach(function(id){var r=RECETAS.find(function(r2){return r2.id===id;});if(r)r.crafteado=true;});}
+      if(itemEquipado){aplicarEfectoItem(itemEquipado);var r=RECETAS.find(function(r2){return r2.id===itemEquipado;});if(r)r.equipado=true;}
     }
   }catch(e){}
   var hoy=new Date().toISOString().split('T')[0];
@@ -670,60 +771,293 @@ function saveState(){
   localStorage.setItem(SAVE_KEY,JSON.stringify({
     nombreJugador,mana,totalMana,totalClicks,counts,countsDef,milestoneSeen,hp,
     prestigeCount,prestigeBonusMps,prestigeBonusCpc,nivelEnemigo,mundoActual,killsEnMundoActual,
-    misionesProgreso,misionesCompletadas,misionesAlmasReclamadas,misionesDate,miClan
+    misionesProgreso,misionesCompletadas,misionesAlmasReclamadas,misionesDate,miClan,
+    wheelUltimaSpin,materiales,itemEquipado,
+    recetasCrafteadas:RECETAS.filter(function(r){return r.crafteado;}).map(function(r){return r.id;})
   }));
 }
 
+// ══ CÁLCULOS ══
+function getCraftMult(){
+  var m=1+craftBonus.mult_dano+craftBonus.mult_todo;
+  if(pocionActiva)m*=3;
+  return m;
+}
+function getMPSCraftMult(){return 1+craftBonus.bonus_mps+craftBonus.mult_todo;}
 function getCostP(u){return Math.floor(u.baseCost*Math.pow(1.18,counts[u.id]||0));}
 function getCostD(u){return Math.floor(u.baseCost*Math.pow(1.15,countsDef[u.id]||0));}
-function getMPS(){var t=prestigeBonusMps,m=getMundoActualData();for(var i=0;i<UPGRADES_PODER.length;i++)t+=(counts[UPGRADES_PODER[i].id]||0)*UPGRADES_PODER[i].mps;return t*m.multAlmas;}
-function getCPC(){var t=1+prestigeBonusCpc,m=getMundoActualData();for(var i=0;i<UPGRADES_PODER.length;i++)t+=(counts[UPGRADES_PODER[i].id]||0)*UPGRADES_PODER[i].cpc;return Math.floor(t*m.multDano);}
-function getMaxHp(){var t=100;for(var i=0;i<UPGRADES_VIDA.length;i++)t+=(countsDef[UPGRADES_VIDA[i].id]||0)*UPGRADES_VIDA[i].hp;return t;}
-function getDefensa(){var t=0;for(var i=0;i<UPGRADES_VIDA.length;i++)t+=(countsDef[UPGRADES_VIDA[i].id]||0)*UPGRADES_VIDA[i].def;return t;}
-function getRegen(){var t=0;for(var i=0;i<UPGRADES_VIDA.length;i++)t+=(countsDef[UPGRADES_VIDA[i].id]||0)*UPGRADES_VIDA[i].regen;return t;}
+function getMPS(){var t=prestigeBonusMps,m=getMundoActualData();for(var i=0;i<UPGRADES_PODER.length;i++)t+=(counts[UPGRADES_PODER[i].id]||0)*UPGRADES_PODER[i].mps;return t*m.multAlmas*getMPSCraftMult();}
+function getCPC(){var t=1+prestigeBonusCpc,m=getMundoActualData();for(var i=0;i<UPGRADES_PODER.length;i++)t+=(counts[UPGRADES_PODER[i].id]||0)*UPGRADES_PODER[i].cpc;return Math.floor(t*m.multDano*getCraftMult());}
+function getMaxHp(){var t=100+craftBonus.bonus_hp;for(var i=0;i<UPGRADES_VIDA.length;i++)t+=(countsDef[UPGRADES_VIDA[i].id]||0)*UPGRADES_VIDA[i].hp;return t;}
+function getDefensa(){var t=craftBonus.tanque?15:0;for(var i=0;i<UPGRADES_VIDA.length;i++)t+=(countsDef[UPGRADES_VIDA[i].id]||0)*UPGRADES_VIDA[i].def;return t;}
+function getRegen(){var t=craftBonus.tanque?3:0;for(var i=0;i<UPGRADES_VIDA.length;i++)t+=(countsDef[UPGRADES_VIDA[i].id]||0)*UPGRADES_VIDA[i].regen;return t;}
 function totalUpgrades(){var t=0,k=Object.keys(counts);for(var i=0;i<k.length;i++)t+=counts[k[i]];var k2=Object.keys(countsDef);for(var i=0;i<k2.length;i++)t+=countsDef[k2[i]];return t;}
 function getDanoEnemigo(){return Math.max(0.5,(2+nivelEnemigo*.8+mundoActual*1.5)-getDefensa());}
 function getMundoActualData(){return MUNDOS[mundoActual-1]||MUNDOS[MUNDOS.length-1];}
 function fmt(n){n=Math.floor(n);if(n>=1e9)return(n/1e9).toFixed(2)+'B';if(n>=1e6)return(n/1e6).toFixed(2)+'M';if(n>=1e3)return(n/1e3).toFixed(1)+'K';return n.toString();}
 
-// ── MISIONES ──
+// ══ CRAFTEO SISTEMA ══
+function aplicarEfectoItem(id){
+  craftBonus={mult_dano:0,bonus_mps:0,bonus_hp:0,mult_todo:0,tanque:0};
+  if(!id)return;
+  var r=RECETAS.find(function(r2){return r2.id===id;});
+  if(!r)return;
+  if(r.efecto.tipo==='mult_dano')  craftBonus.mult_dano=r.efecto.valor;
+  if(r.efecto.tipo==='bonus_mps')  craftBonus.bonus_mps=r.efecto.valor;
+  if(r.efecto.tipo==='bonus_hp')   craftBonus.bonus_hp=r.efecto.valor;
+  if(r.efecto.tipo==='mult_todo')  craftBonus.mult_todo=r.efecto.valor;
+  if(r.efecto.tipo==='tanque')     craftBonus.tanque=1;
+  if(r.efecto.tipo==='pocion_x3'){pocionActiva=true;pocionTimer=r.efecto.valor;showToast('🧪 ¡Poción activa! x3 almas por 5 min');}
+}
+
+function abrirCrafteo(){
+  renderCrafteo();
+  document.getElementById('craft-modal').classList.add('show');
+}
+function cerrarCrafteo(){document.getElementById('craft-modal').classList.remove('show');}
+
+function renderCrafteo(){
+  // Materiales
+  var grid=document.getElementById('mats-grid');grid.innerHTML='';
+  MATERIALES_DEF.forEach(function(m){
+    var cant=materiales[m.id]||0;
+    var el=document.createElement('div');el.className='mat-item';
+    el.innerHTML='<div class="mat-icon">'+m.icono+'</div><div class="mat-nombre">'+m.nombre+'</div><div class="mat-cantidad">'+cant+'</div>';
+    grid.appendChild(el);
+  });
+  // Recetas
+  var recipesDiv=document.getElementById('craft-recipes');recipesDiv.innerHTML='';
+  RECETAS.forEach(function(r){
+    var puedeCraftear=!r.crafteado;
+    var ingOk=true;
+    var ingHtml='';
+    Object.keys(r.ingredientes).forEach(function(matId){
+      var needed=r.ingredientes[matId];
+      var tengo=materiales[matId]||0;
+      var ok=tengo>=needed;
+      if(!ok)ingOk=false;
+      var matDef=MATERIALES_DEF.find(function(m){return m.id===matId;});
+      ingHtml+='<span class="ing-item '+(ok?'ok':'falta')+'">'+( matDef?matDef.icono:matId)+' '+tengo+'/'+needed+'</span>';
+    });
+    var card=document.createElement('div');
+    card.className='recipe-card'+(puedeCraftear&&ingOk?' puede-craftear':'');
+    var badgeClass=r.equipado?'equipado':r.crafteado?'disponible':'bloqueado';
+    var badgeTxt=r.equipado?'EQUIPADO':r.crafteado?'CRAFTEADO':'SIN CRAFTEAR';
+    var btnHtml='';
+    if(!r.crafteado&&ingOk)btnHtml='<button class="recipe-btn craftear" onclick="craftearItem(\''+r.id+'\')">[ CRAFTEAR ]</button>';
+    else if(r.crafteado&&!r.equipado)btnHtml='<button class="recipe-btn equipar" onclick="equiparItem(\''+r.id+'\')">[ EQUIPAR ]</button>';
+    else if(r.equipado)btnHtml='<button class="recipe-btn equipado">[ EQUIPADO ✅ ]</button>';
+    else btnHtml='<button class="recipe-btn no-puede" disabled>[ FALTAN MATERIALES ]</button>';
+    card.innerHTML='<div class="recipe-header"><span class="recipe-nombre">'+r.nombre+'</span><span class="recipe-badge '+badgeClass+'">'+badgeTxt+'</span></div><div class="recipe-desc">'+r.desc+'</div><div class="recipe-ingredientes">'+ingHtml+'</div>'+btnHtml;
+    recipesDiv.appendChild(card);
+  });
+}
+
+function craftearItem(id){
+  var r=RECETAS.find(function(r2){return r2.id===id;});
+  if(!r||r.crafteado)return;
+  // Verificar materiales
+  var ok=true;
+  Object.keys(r.ingredientes).forEach(function(matId){if((materiales[matId]||0)<r.ingredientes[matId])ok=false;});
+  if(!ok){showToast('❌ Faltan materiales');return;}
+  // Consumir materiales
+  Object.keys(r.ingredientes).forEach(function(matId){materiales[matId]=(materiales[matId]||0)-r.ingredientes[matId];});
+  r.crafteado=true;
+  showToast('⚗️ ¡'+r.nombre+' crafteado!');
+  sfxBonus();triggerStarRain();
+  renderCrafteo();saveState();
+}
+
+function equiparItem(id){
+  // Desequipar anterior
+  if(itemEquipado){
+    var anterior=RECETAS.find(function(r2){return r2.id===itemEquipado;});
+    if(anterior)anterior.equipado=false;
+  }
+  var r=RECETAS.find(function(r2){return r2.id===id;});
+  if(!r||!r.crafteado)return;
+  // Las pociones son de un solo uso
+  if(r.efecto.tipo==='pocion_x3'){aplicarEfectoItem(id);r.crafteado=false;renderCrafteo();saveState();return;}
+  r.equipado=true;itemEquipado=id;
+  aplicarEfectoItem(id);
+  showToast('✅ '+r.nombre+' equipado!');
+  document.getElementById('stat-item').textContent=r.nombre;
+  renderCrafteo();updateDisplay();saveState();
+}
+
+function dropearMaterial(){
+  // Chance de dropear material al matar enemigo
+  var chance=0.25+mundoActual*0.05; // más chance en mundos altos
+  if(Math.random()>chance)return;
+  // Qué material dropeamos según el mundo
+  var pools=[
+    ['hierro','cristal'],          // mundo 1
+    ['hierro','cristal','runa'],   // mundo 2
+    ['fuego','cristal','runa'],    // mundo 3
+    ['sombra','fuego','alma_pura'],// mundo 4
+    ['sombra','alma_pura','runa'], // mundo 5
+    ['astral','dragon_esc','alma_pura'], // mundo 6
+  ];
+  var pool=pools[Math.min(mundoActual-1,pools.length-1)];
+  // Jefes dropean materiales raros
+  if(ENEMY.type===2){pool=['dragon_esc','astral','sombra'];}
+  var mat=pool[Math.floor(Math.random()*pool.length)];
+  materiales[mat]=(materiales[mat]||0)+1;
+  var def=MATERIALES_DEF.find(function(m){return m.id===mat;});
+  showComboText2(def.icono+' +1 '+def.nombre,'#a259ff');
+}
+
+// ══ RUEDA DE LA FORTUNA ══
+function drawWheel(){
+  if(!wheelCanvas){wheelCanvas=document.getElementById('wheel-canvas');wheelCtx=wheelCanvas.getContext('2d');}
+  var total=WHEEL_PREMIOS.reduce(function(s,p){return s+p.peso;},0);
+  var cx=130,cy=130,r=120;
+  var angle=wheelAngulo;
+  wheelCtx.clearRect(0,0,260,260);
+  WHEEL_PREMIOS.forEach(function(p){
+    var slice=(p.peso/total)*Math.PI*2;
+    wheelCtx.beginPath();wheelCtx.moveTo(cx,cy);
+    wheelCtx.arc(cx,cy,r,angle,angle+slice);
+    wheelCtx.closePath();
+    wheelCtx.fillStyle=p.color;wheelCtx.fill();
+    wheelCtx.strokeStyle='#000';wheelCtx.lineWidth=1.5;wheelCtx.stroke();
+    // Texto
+    wheelCtx.save();wheelCtx.translate(cx,cy);wheelCtx.rotate(angle+slice/2);
+    wheelCtx.textAlign='right';wheelCtx.fillStyle='#fff';
+    wheelCtx.font='bold 10px Courier New';wheelCtx.shadowBlur=4;wheelCtx.shadowColor='#000';
+    wheelCtx.fillText(p.label,r-6,4);
+    wheelCtx.restore();
+    angle+=slice;
+  });
+  // Centro
+  wheelCtx.beginPath();wheelCtx.arc(cx,cy,18,0,Math.PI*2);
+  wheelCtx.fillStyle='#0d0d0d';wheelCtx.fill();
+  wheelCtx.strokeStyle='#ffd700';wheelCtx.lineWidth=2;wheelCtx.stroke();
+  wheelCtx.fillStyle='#ffd700';wheelCtx.font='bold 11px Courier New';wheelCtx.textAlign='center';
+  wheelCtx.fillText('⚔️',cx,cy+4);
+}
+
+function abrirRueda(){
+  document.getElementById('wheel-modal').classList.add('show');
+  drawWheel();
+  actualizarTimerRueda();
+}
+function cerrarRueda(){document.getElementById('wheel-modal').classList.remove('show');}
+
+function actualizarTimerRueda(){
+  var ahora=Date.now();
+  var resto=Math.max(0,WHEEL_COOLDOWN-(ahora-wheelUltimaSpin));
+  var btn=document.getElementById('wheel-spin-btn');
+  var timerEl=document.getElementById('wheel-timer');
+  if(resto>0){
+    var mm=Math.floor(resto/60000),ss=Math.floor((resto%60000)/1000);
+    timerEl.textContent='Próximo giro en: '+(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss;
+    btn.disabled=true;btn.textContent='[ PRÓXIMO EN '+(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss+' ]';
+  } else {
+    timerEl.textContent='¡El giro está disponible!';
+    btn.disabled=false;btn.textContent='[ 🎰 GIRAR ]';
+    // Mostrar badge
+    document.getElementById('wheel-badge').style.display='inline-block';
+    document.getElementById('wheel-btn-canvas').style.display='block';
+  }
+}
+
+function girarRueda(){
+  if(wheelGirando)return;
+  var ahora=Date.now();
+  if(ahora-wheelUltimaSpin<WHEEL_COOLDOWN)return;
+  wheelGirando=true;
+  document.getElementById('wheel-spin-btn').disabled=true;
+  document.getElementById('wheel-result').style.display='none';
+  wheelUltimaSpin=ahora;
+  saveState();
+  document.getElementById('wheel-badge').style.display='none';
+  document.getElementById('wheel-btn-canvas').style.display='none';
+
+  // Seleccionar premio con peso
+  var total=WHEEL_PREMIOS.reduce(function(s,p){return s+p.peso;},0);
+  var rand=Math.random()*total,acc=0,premioIdx=0;
+  for(var i=0;i<WHEEL_PREMIOS.length;i++){acc+=WHEEL_PREMIOS[i].peso;if(rand<acc){premioIdx=i;break;}}
+
+  // Calcular ángulo final para que quede en ese sector
+  var sectorTotal=WHEEL_PREMIOS.reduce(function(s,p){return s+p.peso;},0);
+  var sectorAngle=0;
+  for(var i=0;i<premioIdx;i++)sectorAngle+=WHEEL_PREMIOS[i].peso/sectorTotal*Math.PI*2;
+  sectorAngle+=WHEEL_PREMIOS[premioIdx].peso/sectorTotal*Math.PI;
+  var targetAngle=Math.PI*2*5-sectorAngle; // 5 vueltas + posición
+  var startAngle=wheelAngulo;
+  var startTime=Date.now();
+  var duration=3000;
+
+  function animate(){
+    var elapsed=Date.now()-startTime;
+    var progress=Math.min(1,elapsed/duration);
+    var ease=1-Math.pow(1-progress,4);
+    wheelAngulo=startAngle+targetAngle*ease;
+    drawWheel();
+    if(progress<1){requestAnimationFrame(animate);}
+    else{
+      wheelGirando=false;
+      aplicarPremioRueda(WHEEL_PREMIOS[premioIdx]);
+      actualizarTimerRueda();
+    }
+  }
+  requestAnimationFrame(animate);
+}
+
+function aplicarPremioRueda(premio){
+  var resultado='',desc='';
+  if(premio.tipo==='almas_x2'){var bonus=Math.floor(totalMana*.1)||100;mana+=bonus;totalMana+=bonus;resultado=premio.label;desc='¡Ganaste '+fmt(bonus)+' almas extra!';}
+  else if(premio.tipo==='almas_x3'){var bonus=Math.floor(totalMana*.2)||300;mana+=bonus;totalMana+=bonus;resultado=premio.label;desc='¡Ganaste '+fmt(bonus)+' almas extra!';}
+  else if(premio.tipo==='almas_x5'){var bonus=Math.floor(totalMana*.5)||500;mana+=bonus;totalMana+=bonus;resultado=premio.label;desc='¡Ganaste '+fmt(bonus)+' almas extra!';}
+  else if(premio.tipo==='dano_bonus'){prestigeBonusCpc+=premio.valor;resultado=premio.label;desc='Daño permanente aumentado en '+premio.valor+'!';}
+  else if(premio.tipo==='materiales'){
+    var mats=['hierro','cristal','sombra','fuego','alma_pura'];
+    var mat=mats[Math.floor(Math.random()*mats.length)];
+    materiales[mat]=(materiales[mat]||0)+premio.valor;
+    var def=MATERIALES_DEF.find(function(m){return m.id===mat;});
+    resultado='🧪 +'+premio.valor+' '+(def?def.nombre:mat);
+    desc='Materiales de crafteo obtenidos!';
+  }
+  else if(premio.tipo==='hp_bonus'){hp=Math.min(getMaxHp(),hp+premio.valor);resultado=premio.label;desc='HP restaurado en +'+premio.valor+'!';}
+  else{resultado='💀 Nada...';desc='Mejor suerte la próxima vez.';}
+
+  document.getElementById('wheel-result-txt').textContent=resultado;
+  document.getElementById('wheel-result-desc').textContent=desc;
+  document.getElementById('wheel-result').style.display='block';
+  showToast('🎰 '+resultado);
+  sfxBonus();triggerStarRain();
+  updateDisplay();saveState();
+}
+
+function showComboText2(txt,color){var el=document.createElement('div');el.style.cssText='position:fixed;top:40%;left:50%;transform:translate(-50%,-50%);font-size:1.2rem;font-weight:bold;color:'+color+';font-family:Courier New,monospace;pointer-events:none;z-index:999;animation:floatCombo .9s ease-out forwards;white-space:nowrap;text-shadow:0 0 8px '+color+';';el.textContent=txt;document.body.appendChild(el);setTimeout(function(){el.remove();},950);}
+
+// ══ MISIONES ══
 function getMisionesDelDia(){
   var hoy=new Date().toISOString().split('T')[0];
   var seed=parseInt(hoy.replace(/-/g,''));
   var r=function(n){seed=(seed*1103515245+12345)&0x7fffffff;return seed%n;};
   var pool=[
-    {tipo:'kills',     nombre:'🗡️ Cazador',      desc:'Matá {n} enemigos hoy.',              meta:[20,50,100,200],     reward:[500,1500,3000,8000]},
-    {tipo:'almas',     nombre:'💰 Coleccionista', desc:'Juntá {n} almas hoy.',                meta:[1000,5000,20000],   reward:[200,1000,5000]},
-    {tipo:'kills_boss',nombre:'👹 Cazajefes',     desc:'Participá en {n} derrotas de jefe.',  meta:[1,2,3],             reward:[2000,5000,10000]},
-    {tipo:'mundo',     nombre:'🌍 Explorador',    desc:'Avanzá al mundo {n}.',                meta:[2,3,4,5],           reward:[3000,8000,20000,50000]},
-    {tipo:'nivel',     nombre:'⚔️ Sobreviviente', desc:'Alcanzá el nivel enemigo {n}.',       meta:[5,10,20,50],        reward:[1000,3000,8000,20000]},
+    {tipo:'kills',nombre:'🗡️ Cazador',desc:'Matá {n} enemigos.',meta:[20,50,100,200],reward:[500,1500,3000,8000]},
+    {tipo:'almas',nombre:'💰 Coleccionista',desc:'Juntá {n} almas.',meta:[1000,5000,20000],reward:[200,1000,5000]},
+    {tipo:'kills_boss',nombre:'👹 Cazajefes',desc:'Participá en {n} derrotas de jefe.',meta:[1,2,3],reward:[2000,5000,10000]},
+    {tipo:'mundo',nombre:'🌍 Explorador',desc:'Avanzá al mundo {n}.',meta:[2,3,4,5],reward:[3000,8000,20000,50000]},
+    {tipo:'nivel',nombre:'⚔️ Sobreviviente',desc:'Alcanzá nivel enemigo {n}.',meta:[5,10,20,50],reward:[1000,3000,8000,20000]},
   ];
   var elegidas=[],usados=[];
-  while(elegidas.length<3){
-    var idx=r(pool.length);if(usados.indexOf(idx)>=0)continue;usados.push(idx);
-    var m=pool[idx],dif=r(m.meta.length);
-    elegidas.push({tipo:m.tipo,nombre:m.nombre,desc:m.desc.replace('{n}',m.meta[dif]),meta:m.meta[dif],reward:m.reward[dif],fecha:hoy});
-  }
+  while(elegidas.length<3){var idx=r(pool.length);if(usados.indexOf(idx)>=0)continue;usados.push(idx);var m=pool[idx],dif=r(m.meta.length);elegidas.push({tipo:m.tipo,nombre:m.nombre,desc:m.desc.replace('{n}',m.meta[dif]),meta:m.meta[dif],reward:m.reward[dif],fecha:hoy});}
   return elegidas;
 }
-function getProgresoMision(m){
-  if(m.tipo==='kills')      return Math.min(m.meta,misionesProgreso.kills);
-  if(m.tipo==='almas')      return Math.min(m.meta,misionesProgreso.almas);
-  if(m.tipo==='kills_boss') return Math.min(m.meta,misionesProgreso.kills_boss);
-  if(m.tipo==='mundo')      return Math.min(m.meta,misionesProgreso.mundo);
-  if(m.tipo==='nivel')      return Math.min(m.meta,misionesProgreso.nivel);
-  return 0;
-}
+function getProgresoMision(m){if(m.tipo==='kills')return Math.min(m.meta,misionesProgreso.kills);if(m.tipo==='almas')return Math.min(m.meta,misionesProgreso.almas);if(m.tipo==='kills_boss')return Math.min(m.meta,misionesProgreso.kills_boss);if(m.tipo==='mundo')return Math.min(m.meta,misionesProgreso.mundo);if(m.tipo==='nivel')return Math.min(m.meta,misionesProgreso.nivel);return 0;}
 function renderMisiones(){
   var lista=document.getElementById('misiones-lista');lista.innerHTML='';
   misionesHoy.forEach(function(m,i){
-    var prog=getProgresoMision(m),pct=Math.min(100,Math.floor(prog/m.meta*100));
-    var completada=prog>=m.meta;misionesCompletadas[i]=completada;
+    var prog=getProgresoMision(m),pct=Math.min(100,Math.floor(prog/m.meta*100)),completada=prog>=m.meta;misionesCompletadas[i]=completada;
     var card=document.createElement('div');card.className='mision-card'+(completada?' completada':'');
     var rewardHtml='';
     if(completada&&!misionesAlmasReclamadas[i])rewardHtml='<button onclick="reclamarMision('+i+')" style="width:100%;padding:7px;border-radius:6px;border:none;background:var(--gold);color:#000;font-family:Courier New,monospace;font-size:.8rem;cursor:pointer;font-weight:bold;margin-top:6px">[ RECLAMAR +'+fmt(m.reward)+' ALMAS ]</button>';
-    else if(misionesAlmasReclamadas[i])rewardHtml='<div class="mision-done">✅ Recompensa reclamada</div>';
-    card.innerHTML='<div class="mision-header"><span class="mision-nombre">'+m.nombre+'</span><span class="mision-reward">+'+fmt(m.reward)+' almas</span></div><div class="mision-desc">'+m.desc+'</div><div class="mision-progress"><div class="mision-bar" style="width:'+pct+'%"></div></div><div class="mision-pct">'+fmt(prog)+' / '+fmt(m.meta)+' — '+pct+'%</div>'+rewardHtml;
+    else if(misionesAlmasReclamadas[i])rewardHtml='<div class="mision-done">✅ Reclamado</div>';
+    card.innerHTML='<div class="mision-header"><span class="mision-nombre">'+m.nombre+'</span><span class="mision-reward">+'+fmt(m.reward)+'</span></div><div class="mision-desc">'+m.desc+'</div><div class="mision-progress"><div class="mision-bar" style="width:'+pct+'%"></div></div><div class="mision-pct">'+fmt(prog)+'/'+fmt(m.meta)+' — '+pct+'%</div>'+rewardHtml;
     lista.appendChild(card);
   });
   var ahora=new Date(),mn=new Date(ahora);mn.setHours(24,0,0,0);var resto=mn-ahora;
@@ -731,15 +1065,9 @@ function renderMisiones(){
   document.getElementById('misiones-timer').textContent=(hh<10?'0':'')+hh+':'+(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss;
 }
 function reclamarMision(i){if(!misionesCompletadas[i]||misionesAlmasReclamadas[i])return;misionesAlmasReclamadas[i]=true;mana+=misionesHoy[i].reward;totalMana+=misionesHoy[i].reward;showToast('🎯 +'+fmt(misionesHoy[i].reward)+' almas');renderMisiones();updateDisplay();saveState();}
-function actualizarMisionesProgreso(tipo,valor){
-  if(tipo==='kills')misionesProgreso.kills=(misionesProgreso.kills||0)+valor;
-  if(tipo==='almas')misionesProgreso.almas=(misionesProgreso.almas||0)+valor;
-  if(tipo==='kills_boss')misionesProgreso.kills_boss=(misionesProgreso.kills_boss||0)+valor;
-  if(tipo==='mundo'&&valor>misionesProgreso.mundo)misionesProgreso.mundo=valor;
-  if(tipo==='nivel'&&valor>misionesProgreso.nivel)misionesProgreso.nivel=valor;
-}
+function actualizarMisionesProgreso(tipo,valor){if(tipo==='kills')misionesProgreso.kills=(misionesProgreso.kills||0)+valor;if(tipo==='almas')misionesProgreso.almas=(misionesProgreso.almas||0)+valor;if(tipo==='kills_boss')misionesProgreso.kills_boss=(misionesProgreso.kills_boss||0)+valor;if(tipo==='mundo'&&valor>misionesProgreso.mundo)misionesProgreso.mundo=valor;if(tipo==='nivel'&&valor>misionesProgreso.nivel)misionesProgreso.nivel=valor;}
 
-// ── MUNDOS ──
+// ══ MUNDOS ══
 function renderMundos(){
   var lista=document.getElementById('mundos-lista');lista.innerHTML='';
   MUNDOS.forEach(function(m){
@@ -747,342 +1075,68 @@ function renderMundos(){
     var kills=m.id===mundoActual?killsEnMundoActual:(m.id<mundoActual?m.killsNecesarios:0);
     var pct=Math.min(100,Math.floor(kills/m.killsNecesarios*100));
     var card=document.createElement('div');card.className='mundo-card '+estado;
-    var btnHtml=estado==='activo'?'<button class="mundo-btn bloqueado-btn" disabled>[ MUNDO ACTUAL ]</button>':
-      estado==='desbloqueado'?'<button class="mundo-btn ir" onclick="irAMundo('+m.id+')">[ VOLVER AQUÍ ]</button>':
-      '<button class="mundo-btn bloqueado-btn" disabled>[ '+fmt(m.killsNecesarios)+' kills para desbloquear ]</button>';
-    card.innerHTML='<div class="mundo-header"><span class="mundo-nombre">'+m.nombre+'</span><span class="mundo-badge '+estado+'">'+estado.toUpperCase()+'</span></div>'+
-      '<div class="mundo-desc">'+m.desc+'</div>'+
-      '<div class="mundo-stats"><span class="mundo-stat">⚔️ x'+m.multDano+'</span><span class="mundo-stat">💰 x'+m.multAlmas+'</span></div>'+
-      (estado!=='bloqueado'?'<div class="mundo-progreso"><div class="mundo-bar" style="width:'+pct+'%"></div></div><div class="mundo-pct">'+fmt(kills)+'/'+fmt(m.killsNecesarios)+'</div>':'')+btnHtml;
+    var btnHtml=estado==='activo'?'<button class="mundo-btn bloqueado-btn" disabled>[ ACTUAL ]</button>':estado==='desbloqueado'?'<button class="mundo-btn ir" onclick="irAMundo('+m.id+')">[ VOLVER ]</button>':'<button class="mundo-btn bloqueado-btn" disabled>[ '+fmt(m.killsNecesarios)+' kills ]</button>';
+    card.innerHTML='<div class="mundo-header"><span class="mundo-nombre">'+m.nombre+'</span><span class="mundo-badge '+estado+'">'+estado.toUpperCase()+'</span></div><div class="mundo-desc">'+m.desc+'</div><div class="mundo-stats"><span class="mundo-stat">⚔️ x'+m.multDano+'</span><span class="mundo-stat">💰 x'+m.multAlmas+'</span></div>'+(estado!=='bloqueado'?'<div class="mundo-progreso"><div class="mundo-bar" style="width:'+pct+'%"></div></div><div class="mundo-pct">'+fmt(kills)+'/'+fmt(m.killsNecesarios)+'</div>':'')+btnHtml;
     lista.appendChild(card);
   });
   document.getElementById('world-badge').textContent='🌍 '+getMundoActualData().nombre;
   document.getElementById('world-hud-txt').textContent=getMundoActualData().nombre;
 }
 function irAMundo(id){if(id>mundoActual)return;mundoActual=id;killsEnMundoActual=0;showToast('🌍 '+getMundoActualData().nombre);spawnEnemy();updateDisplay();renderMundos();saveState();}
-function checkMundoAvance(){
-  var m=getMundoActualData();if(mundoActual>=MUNDOS.length)return;
-  if(killsEnMundoActual>=m.killsNecesarios){
-    mundoActual++;killsEnMundoActual=0;
-    var nm=getMundoActualData();
-    document.getElementById('wt-nombre').textContent=nm.nombre;
-    document.getElementById('wt-desc').textContent=nm.desc;
-    var wt=document.getElementById('world-transition');wt.classList.add('show');
-    triggerStarRain();sfxBonus();showToast('🌍 ¡'+nm.nombre+'!');
-    actualizarMisionesProgreso('mundo',mundoActual);
-    setTimeout(function(){wt.classList.remove('show');},2500);
-    updateDisplay();renderMundos();saveState();
-  }
-}
+function checkMundoAvance(){var m=getMundoActualData();if(mundoActual>=MUNDOS.length)return;if(killsEnMundoActual>=m.killsNecesarios){mundoActual++;killsEnMundoActual=0;var nm=getMundoActualData();document.getElementById('wt-nombre').textContent=nm.nombre;document.getElementById('wt-desc').textContent=nm.desc;var wt=document.getElementById('world-transition');wt.classList.add('show');triggerStarRain();sfxBonus();showToast('🌍 ¡'+nm.nombre+'!');actualizarMisionesProgreso('mundo',mundoActual);setTimeout(function(){wt.classList.remove('show');},2500);updateDisplay();renderMundos();saveState();}}
 
-// ── JEFE DIARIO ──
-function getJefeFecha(){return new Date().toISOString().split('T')[0]+'_'+Math.floor(Date.now()/600000);} // cambia cada 10 min (test)
-function getJefeConfig(){var idx=Math.floor(Math.random()*JEFES.length);return JEFES[idx];}
-
+// ══ JEFE ══
+function getJefeFecha(){return new Date().toISOString().split('T')[0]+'_'+Math.floor(Date.now()/600000);}
 function cargarJefe(){
   var fecha=getJefeFecha();
   fetch(SB_URL+'/rest/v1/jefe_diario?fecha=eq.'+encodeURIComponent(fecha),{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}})
   .then(function(r){return r.json();})
   .then(function(data){
-    if(data&&data.length>0){
-      jefeData=data[0];
-      renderJefe();
-    } else {
-      // Crear nuevo jefe
-      var cfg=JEFES[Math.floor(Math.random()*JEFES.length)];
-      var hpMax=cfg.hpBase;
-      var id='jefe_'+fecha;
-      fetch(SB_URL+'/rest/v1/jefe_diario',{
-        method:'POST',
-        headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=representation'},
-        body:JSON.stringify({id:id,hp_actual:hpMax,hp_max:hpMax,fecha:fecha,muerto:false,creado_por:nombreJugador||'sistema',recompensa:Math.floor(hpMax/10)})
-      })
-      .then(function(r){return r.json();})
-      .then(function(d){if(d&&d.length>0){jefeData=d[0];renderJefe();}})
-      .catch(function(){});
-    }
-  })
-  .catch(function(){});
-  cargarRankingJefe();
+    if(data&&data.length>0){jefeData=data[0];renderJefe();}
+    else{var cfg=JEFES[Math.floor(Math.random()*JEFES.length)];fetch(SB_URL+'/rest/v1/jefe_diario',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=representation'},body:JSON.stringify({id:'jefe_'+fecha,hp_actual:cfg.hpBase,hp_max:cfg.hpBase,fecha:fecha,muerto:false,creado_por:nombreJugador||'sistema',recompensa:Math.floor(cfg.hpBase/10)})}).then(function(r){return r.json();}).then(function(d){if(d&&d.length>0){jefeData=d[0];renderJefe();}}).catch(function(){});}
+  }).catch(function(){});
+  if(jefeData)cargarRankingJefe();
 }
-
 function renderJefe(){
   if(!jefeData)return;
-  // Buscar nombre del jefe según HP max
-  var cfg=null;for(var i=0;i<JEFES.length;i++)if(JEFES[i].hpBase===jefeData.hp_max){cfg=JEFES[i];break;}
-  if(!cfg)cfg=JEFES[0];
-  document.getElementById('jefe-icono').textContent=cfg.icono;
-  document.getElementById('jefe-nombre').textContent=cfg.nombre;
-  var pct=Math.max(0,(jefeData.hp_actual/jefeData.hp_max)*100);
-  document.getElementById('jefe-hp-bar').style.width=pct+'%';
-  document.getElementById('jefe-hp-txt').textContent='HP: '+fmt(jefeData.hp_actual)+' / '+fmt(jefeData.hp_max);
-  // Calcular próximo jefe (cada 10 min)
-  var ahora=Date.now();
-  var proximoJefe=Math.ceil(ahora/600000)*600000;
-  var resto=Math.max(0,proximoJefe-ahora);
+  var cfg=null;for(var i=0;i<JEFES.length;i++)if(JEFES[i].hpBase===jefeData.hp_max){cfg=JEFES[i];break;}if(!cfg)cfg=JEFES[0];
+  document.getElementById('jefe-icono').textContent=cfg.icono;document.getElementById('jefe-nombre').textContent=cfg.nombre;
+  var pct=Math.max(0,(jefeData.hp_actual/jefeData.hp_max)*100);document.getElementById('jefe-hp-bar').style.width=pct+'%';document.getElementById('jefe-hp-txt').textContent='HP: '+fmt(jefeData.hp_actual)+' / '+fmt(jefeData.hp_max);
+  var ahora=Date.now(),proximoJefe=Math.ceil(ahora/600000)*600000,resto=Math.max(0,proximoJefe-ahora);
   var mm2=Math.floor(resto/60000),ss2=Math.floor((resto%60000)/1000);
   document.getElementById('jefe-timer').textContent=(mm2<10?'0':'')+mm2+':'+(ss2<10?'0':'')+ss2;
-  if(jefeData.muerto||jefeData.hp_actual<=0){
-    document.getElementById('jefe-atacar-btn').disabled=true;
-    document.getElementById('jefe-muerto').style.display='block';
-    document.getElementById('jefe-atacar-btn').style.display='none';
-    var rv=document.getElementById('jefe-revive-timer');
-    if(rv)rv.textContent=(mm2<10?'0':'')+mm2+':'+(ss2<10?'0':'')+ss2;
-  } else {
-    document.getElementById('jefe-atacar-btn').disabled=false;
-    document.getElementById('jefe-atacar-btn').style.display='block';
-    document.getElementById('jefe-muerto').style.display='none';
-  }
+  if(jefeData.muerto||jefeData.hp_actual<=0){document.getElementById('jefe-atacar-btn').disabled=true;document.getElementById('jefe-atacar-btn').style.display='none';document.getElementById('jefe-muerto').style.display='block';var rv=document.getElementById('jefe-revive-timer');if(rv)rv.textContent=(mm2<10?'0':'')+mm2+':'+(ss2<10?'0':'')+ss2;}
+  else{document.getElementById('jefe-atacar-btn').disabled=false;document.getElementById('jefe-atacar-btn').style.display='block';document.getElementById('jefe-muerto').style.display='none';}
   document.getElementById('jefe-mi-dano-txt').textContent=fmt(jefeMiDano);
 }
-
 function atacarJefe(){
   if(!jefeData||jefeData.muerto||jefeData.hp_actual<=0)return;
   var dano=getCPC()*10+Math.floor(totalMana/1000);
-  jefeMiDano+=dano;
-  var nuevoHp=Math.max(0,jefeData.hp_actual-dano);
-  jefeData.hp_actual=nuevoHp;
-  var muerto=nuevoHp<=0;
-  // Actualizar HP en Supabase
-  fetch(SB_URL+'/rest/v1/jefe_diario?id=eq.'+jefeData.id,{
-    method:'PATCH',
-    headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},
-    body:JSON.stringify({hp_actual:nuevoHp,muerto:muerto})
-  }).catch(function(){});
-  // Registrar daño del jugador
-  registrarDanoJefe(dano);
-  showComboText2('💥 -'+fmt(dano)+' al jefe!','#e63946');
-  sfx(300,150,'square',.1,.15);
-  renderJefe();
-  if(muerto){
-    showToast('💀 ¡JEFE DERROTADO! Todo el clan ganó '+fmt(jefeData.recompensa||50000)+' almas');
-    mana+=jefeData.recompensa||50000;totalMana+=jefeData.recompensa||50000;
-    actualizarMisionesProgreso('kills_boss',1);
-    updateDisplay();saveState();
-    triggerStarRain();
-  }
+  jefeMiDano+=dano;jefeData.hp_actual=Math.max(0,jefeData.hp_actual-dano);
+  var muerto=jefeData.hp_actual<=0;
+  fetch(SB_URL+'/rest/v1/jefe_diario?id=eq.'+jefeData.id,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({hp_actual:jefeData.hp_actual,muerto:muerto})}).catch(function(){});
+  registrarDanoJefe(dano);showComboText2('💥 -'+fmt(dano)+' al jefe!','#e63946');sfx(300,150,'square',.1,.15);renderJefe();
+  if(muerto){showToast('💀 ¡JEFE DERROTADO! +'+fmt(jefeData.recompensa||50000)+' almas');mana+=jefeData.recompensa||50000;totalMana+=jefeData.recompensa||50000;actualizarMisionesProgreso('kills_boss',1);updateDisplay();saveState();triggerStarRain();
+  // Dropeamos materiales raros al matar jefe
+  var mats=['dragon_esc','astral','runa'];for(var i=0;i<3;i++){var mat=mats[Math.floor(Math.random()*mats.length)];materiales[mat]=(materiales[mat]||0)+1;}}
 }
+function registrarDanoJefe(dano){if(!nombreJugador||!jefeData)return;fetch(SB_URL+'/rest/v1/jefe_dano?jefe_id=eq.'+jefeData.id+'&jugador=eq.'+encodeURIComponent(nombreJugador),{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(data){if(data&&data.length>0){fetch(SB_URL+'/rest/v1/jefe_dano?jefe_id=eq.'+jefeData.id+'&jugador=eq.'+encodeURIComponent(nombreJugador),{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({dano:data[0].dano+dano})});}else{fetch(SB_URL+'/rest/v1/jefe_dano',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({jefe_id:jefeData.id,jugador:nombreJugador,dano:dano})});}}).catch(function(){});}
+function cargarRankingJefe(){if(!jefeData)return;fetch(SB_URL+'/rest/v1/jefe_dano?jefe_id=eq.'+jefeData.id+'&order=dano.desc&limit=5',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(data){var lista=document.getElementById('jefe-ranking-lista');lista.innerHTML='';var medals=['🥇','🥈','🥉','4️⃣','5️⃣'];if(!data||data.length===0){lista.innerHTML='<div style="color:var(--muted);font-size:.8rem;padding:6px">Nadie atacó todavía.</div>';return;}data.forEach(function(d,i){var el=document.createElement('div');el.className='jefe-rank-item';el.innerHTML='<span style="color:var(--gold)">'+(medals[i]||i+1)+'</span><span style="color:var(--text)'+(d.jugador===nombreJugador?';color:var(--accent2)':'')+'">'+(d.jugador===nombreJugador?'▶ ':'')+d.jugador+'</span><span style="color:var(--accent)">'+fmt(d.dano)+'</span>';lista.appendChild(el);});}).catch(function(){});}
+setInterval(function(){if(document.getElementById('tab-jefe').classList.contains('active')&&jefeData){cargarJefe();cargarRankingJefe();}},5000);
 
-function registrarDanoJefe(dano){
-  if(!nombreJugador||!jefeData)return;
-  fetch(SB_URL+'/rest/v1/jefe_dano?jefe_id=eq.'+jefeData.id+'&jugador=eq.'+encodeURIComponent(nombreJugador),{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}})
-  .then(function(r){return r.json();})
-  .then(function(data){
-    if(data&&data.length>0){
-      fetch(SB_URL+'/rest/v1/jefe_dano?jefe_id=eq.'+jefeData.id+'&jugador=eq.'+encodeURIComponent(nombreJugador),{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({dano:data[0].dano+dano})});
-    } else {
-      fetch(SB_URL+'/rest/v1/jefe_dano',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({jefe_id:jefeData.id,jugador:nombreJugador,dano:dano})});
-    }
-  }).catch(function(){});
-}
+// ══ CLANES ══
+function crearClan(){var nombre=document.getElementById('clan-nuevo-nombre').value.trim(),tag=document.getElementById('clan-nuevo-tag').value.trim().toUpperCase();if(!nombre||!tag){showToast('❌ Completá nombre y tag');return;}if(tag.length<2){showToast('❌ Tag muy corto');return;}var id='clan_'+Date.now().toString(36);fetch(SB_URL+'/rest/v1/clanes',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=representation'},body:JSON.stringify({id:id,nombre:nombre,tag:tag,lider:nombreJugador,almas_totales:Math.floor(totalMana)})}).then(function(r){return r.json();}).then(function(data){if(data&&data.length>0){miClan={id:data[0].id,nombre:data[0].nombre,tag:data[0].tag,lider:data[0].lider};updateClanBadge();updateClanPanel();uploadScore();saveState();showToast('🏯 ¡Clan ['+tag+'] creado!');}}).catch(function(){showToast('❌ Error. ¿Nombre ya existe?');});}
+function unirseClan(){var id=document.getElementById('clan-unirse-id').value.trim();if(!id){showToast('❌ Ingresá el ID');return;}fetch(SB_URL+'/rest/v1/clanes?id=eq.'+encodeURIComponent(id),{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(data){if(!data||data.length===0){showToast('❌ Clan no encontrado');return;}miClan={id:data[0].id,nombre:data[0].nombre,tag:data[0].tag,lider:data[0].lider};updateClanBadge();updateClanPanel();uploadScore();saveState();showToast('🏯 ¡Te uniste a ['+data[0].tag+']!');}).catch(function(){showToast('❌ Error al unirse');});}
+function salirClan(){if(!miClan)return;miClan=null;updateClanBadge();document.getElementById('clan-tiene').style.display='none';document.getElementById('clan-no-tiene').style.display='block';if(chatInterval){clearInterval(chatInterval);chatInterval=null;}uploadScore();saveState();showToast('👋 Saliste del clan');cargarRankingClanes();}
+function updateClanBadge(){var badge=document.getElementById('clan-badge'),txt=document.getElementById('clan-badge-txt');if(miClan){badge.style.display='inline-block';txt.textContent='['+miClan.tag+'] '+miClan.nombre;}else badge.style.display='none';document.getElementById('stat-clan').textContent=miClan?'['+miClan.tag+']':'-';}
+function updateClanPanel(){if(!miClan){document.getElementById('clan-tiene').style.display='none';document.getElementById('clan-no-tiene').style.display='block';cargarRankingClanes();return;}document.getElementById('clan-tiene').style.display='block';document.getElementById('clan-no-tiene').style.display='none';document.getElementById('clan-tag-display').textContent='['+miClan.tag+']';document.getElementById('clan-nombre-display').textContent=miClan.nombre;document.getElementById('clan-lider-display').textContent=miClan.lider;document.getElementById('clan-id-display').textContent=miClan.id;fetch(SB_URL+'/rest/v1/clanes?id=eq.'+miClan.id,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(data){if(data&&data.length>0)document.getElementById('clan-almas-display').textContent=fmt(data[0].almas_totales);}).catch(function(){});cargarMiembrosDelClan();cargarChat();if(!chatInterval)chatInterval=setInterval(cargarChat,5000);}
+function cargarMiembrosDelClan(){if(!miClan)return;fetch(SB_URL+'/rest/v1/ranking?clan_tag=eq.'+encodeURIComponent('['+miClan.tag+']')+'&order=mana.desc&limit=20',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(data){var lista=document.getElementById('clan-miembros-lista');lista.innerHTML='';document.getElementById('clan-miembros-display').textContent=data?data.length:0;if(!data||data.length===0){lista.innerHTML='<div style="color:var(--muted);font-size:.78rem;padding:5px">Solo vos por ahora.</div>';return;}data.forEach(function(m){var el=document.createElement('div');el.style.cssText='display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:.76rem;';el.innerHTML='<span style="color:'+(m.nombre===nombreJugador?'var(--accent2)':'var(--text)')+'">'+( m.nombre===miClan.lider?'👑 ':'')+m.nombre+'</span><span style="color:var(--gold)">'+fmt(m.mana)+'</span>';lista.appendChild(el);});}).catch(function(){});}
+function cargarChat(){if(!miClan)return;fetch(SB_URL+'/rest/v1/clan_chat?clan_id=eq.'+miClan.id+'&order=created_at.desc&limit=25',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(data){var box=document.getElementById('chat-mensajes');var atBottom=box.scrollHeight-box.scrollTop<=box.clientHeight+30;box.innerHTML='';if(!data||data.length===0){box.innerHTML='<div style="color:var(--muted);font-size:.74rem;padding:6px">¡Escribí el primero!</div>';return;}data.reverse().forEach(function(m){var el=document.createElement('div');el.className='chat-msg'+(m.jugador===nombreJugador?' chat-msg-propio':'');var hora=new Date(m.created_at).toLocaleTimeString('es',{hour:'2-digit',minute:'2-digit'});el.innerHTML='<div class="chat-msg-nombre">'+m.jugador+'</div><div class="chat-msg-texto">'+m.mensaje+'</div><div class="chat-msg-time">'+hora+'</div>';box.appendChild(el);});if(atBottom)box.scrollTop=box.scrollHeight;}).catch(function(){});}
+function enviarMensaje(){var input=document.getElementById('chat-input'),msg=input.value.trim();if(!msg||!miClan||!nombreJugador)return;input.value='';fetch(SB_URL+'/rest/v1/clan_chat',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({clan_id:miClan.id,jugador:nombreJugador,mensaje:msg})}).then(function(){cargarChat();}).catch(function(){});}
+function cargarRankingClanes(){fetch(SB_URL+'/rest/v1/clanes?order=almas_totales.desc&limit=10',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(data){var lista=document.getElementById('clan-ranking-lista');if(!lista)return;lista.innerHTML='';var medals=['🥇','🥈','🥉'];if(!data||data.length===0){lista.innerHTML='<div style="color:var(--muted);font-size:.8rem;padding:6px">No hay clanes todavía.</div>';return;}data.forEach(function(c,i){var el=document.createElement('div');el.className='clan-rank-item';el.innerHTML='<span style="color:var(--gold);width:20px">'+(medals[i]||i+1)+'</span><span class="clan-rank-tag">['+c.tag+']</span><span class="clan-rank-nombre">'+c.nombre+'</span><span class="clan-rank-almas">'+fmt(c.almas_totales)+'</span>';lista.appendChild(el);});}).catch(function(){});}
+function actualizarAlmasClan(){if(!miClan)return;fetch(SB_URL+'/rest/v1/clanes?id=eq.'+miClan.id,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(data){if(data&&data.length>0){var nuevas=Math.max(data[0].almas_totales||0,Math.floor(totalMana));if(nuevas>data[0].almas_totales)fetch(SB_URL+'/rest/v1/clanes?id=eq.'+miClan.id,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({almas_totales:nuevas})});}}).catch(function(){});}
 
-function cargarRankingJefe(){
-  if(!jefeData)return;
-  fetch(SB_URL+'/rest/v1/jefe_dano?jefe_id=eq.'+jefeData.id+'&order=dano.desc&limit=5',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}})
-  .then(function(r){return r.json();})
-  .then(function(data){
-    var lista=document.getElementById('jefe-ranking-lista');lista.innerHTML='';
-    var medals=['🥇','🥈','🥉','4️⃣','5️⃣'];
-    if(!data||data.length===0){lista.innerHTML='<div style="color:var(--muted);font-size:.8rem;padding:6px">Nadie atacó todavía.</div>';return;}
-    data.forEach(function(d,i){
-      var el=document.createElement('div');el.className='jefe-rank-item';
-      el.innerHTML='<span class="jefe-rank-pos">'+(medals[i]||i+1)+'</span><span class="jefe-rank-nombre">'+(d.jugador===nombreJugador?'▶ ':'')+d.jugador+'</span><span class="jefe-rank-dano">'+fmt(d.dano)+'</span>';
-      lista.appendChild(el);
-    });
-  }).catch(function(){});
-}
-
-function showComboText2(txt,color){
-  var el=document.createElement('div');
-  el.style.cssText='position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.4rem;font-weight:bold;color:'+color+';text-shadow:0 0 10px '+color+';font-family:Courier New,monospace;pointer-events:none;z-index:999;animation:floatCombo .9s ease-out forwards;white-space:nowrap;';
-  el.textContent=txt;document.body.appendChild(el);setTimeout(function(){el.remove();},950);
-}
-
-// Actualizar jefe cada 5 seg cuando está en esa pestaña
-setInterval(function(){
-  if(document.getElementById('tab-jefe').classList.contains('active')&&jefeData){
-    cargarJefe();cargarRankingJefe();
-  }
-},5000);
-
-// ── CLANES ──
-function crearClan(){
-  var nombre=document.getElementById('clan-nuevo-nombre').value.trim();
-  var tag=document.getElementById('clan-nuevo-tag').value.trim().toUpperCase();
-  if(!nombre||!tag){showToast('❌ Completá nombre y tag');return;}
-  if(tag.length<2||tag.length>4){showToast('❌ El tag debe tener 2-4 letras');return;}
-  var id='clan_'+Date.now().toString(36);
-  fetch(SB_URL+'/rest/v1/clanes',{
-    method:'POST',
-    headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=representation'},
-    body:JSON.stringify({id:id,nombre:nombre,tag:tag,lider:nombreJugador,almas_totales:Math.floor(totalMana)})
-  })
-  .then(function(r){return r.json();})
-  .then(function(data){
-    if(data&&data.length>0){
-      miClan={id:data[0].id,nombre:data[0].nombre,tag:data[0].tag,lider:data[0].lider};
-      updateClanBadge();updateClanPanel();
-      uploadScore();saveState();
-      showToast('🏯 ¡Clan ['+tag+'] '+nombre+' creado!');
-    }
-  })
-  .catch(function(){showToast('❌ Error. ¿El nombre ya existe?');});
-}
-
-function unirseClan(){
-  var id=document.getElementById('clan-unirse-id').value.trim();
-  if(!id){showToast('❌ Ingresá el ID del clan');return;}
-  fetch(SB_URL+'/rest/v1/clanes?id=eq.'+encodeURIComponent(id),{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}})
-  .then(function(r){return r.json();})
-  .then(function(data){
-    if(!data||data.length===0){showToast('❌ Clan no encontrado');return;}
-    miClan={id:data[0].id,nombre:data[0].nombre,tag:data[0].tag,lider:data[0].lider};
-    updateClanBadge();updateClanPanel();
-    uploadScore();saveState();
-    showToast('🏯 ¡Te uniste a ['+data[0].tag+'] '+data[0].nombre+'!');
-  })
-  .catch(function(){showToast('❌ Error al unirse');});
-}
-
-function salirClan(){
-  if(!miClan)return;
-  miClan=null;
-  updateClanBadge();
-  document.getElementById('clan-tiene').style.display='none';
-  document.getElementById('clan-no-tiene').style.display='block';
-  uploadScore();saveState();
-  showToast('👋 Saliste del clan');
-  cargarRankingClanes();
-}
-
-function updateClanBadge(){
-  var badge=document.getElementById('clan-badge');
-  var txt=document.getElementById('clan-badge-txt');
-  if(miClan){badge.style.display='inline-block';txt.textContent='['+miClan.tag+'] '+miClan.nombre;}
-  else{badge.style.display='none';}
-  document.getElementById('stat-clan').textContent=miClan?'['+miClan.tag+']':'-';
-}
-
-function updateClanPanel(){
-  if(!miClan){
-    document.getElementById('clan-tiene').style.display='none';
-    document.getElementById('clan-no-tiene').style.display='block';
-    cargarRankingClanes();
-    return;
-  }
-  document.getElementById('clan-tiene').style.display='block';
-  document.getElementById('clan-no-tiene').style.display='none';
-  document.getElementById('clan-tag-display').textContent='['+miClan.tag+']';
-  document.getElementById('clan-nombre-display').textContent=miClan.nombre;
-  document.getElementById('clan-lider-display').textContent=miClan.lider;
-  document.getElementById('clan-id-display').textContent=miClan.id;
-  // Cargar datos del clan
-  fetch(SB_URL+'/rest/v1/clanes?id=eq.'+miClan.id,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}})
-  .then(function(r){return r.json();})
-  .then(function(data){
-    if(data&&data.length>0){
-      document.getElementById('clan-almas-display').textContent=fmt(data[0].almas_totales);
-    }
-  }).catch(function(){});
-  // Cargar miembros (jugadores del ranking con este clan)
-  cargarMiembrosDelClan();
-  // Iniciar chat
-  cargarChat();
-  if(!chatInterval)chatInterval=setInterval(cargarChat,5000);
-}
-
-function cargarMiembrosDelClan(){
-  if(!miClan)return;
-  fetch(SB_URL+'/rest/v1/ranking?clan_tag=eq.'+encodeURIComponent('['+miClan.tag+']')+'&order=mana.desc&limit=20',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}})
-  .then(function(r){return r.json();})
-  .then(function(data){
-    var lista=document.getElementById('clan-miembros-lista');lista.innerHTML='';
-    document.getElementById('clan-miembros-display').textContent=data?data.length:0;
-    if(!data||data.length===0){lista.innerHTML='<div style="color:var(--muted);font-size:.8rem;padding:6px">Solo vos por ahora.</div>';return;}
-    data.forEach(function(m,i){
-      var el=document.createElement('div');
-      el.style.cssText='display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-size:.78rem;';
-      el.innerHTML='<span style="color:'+(m.nombre===nombreJugador?'var(--accent2)':'var(--text)')+'">'+
-        (m.nombre===miClan.lider?'👑 ':'')+m.nombre+'</span>'+
-        '<span style="color:var(--gold)">'+fmt(m.mana)+'</span>';
-      lista.appendChild(el);
-    });
-  }).catch(function(){});
-}
-
-function cargarChat(){
-  if(!miClan)return;
-  fetch(SB_URL+'/rest/v1/clan_chat?clan_id=eq.'+miClan.id+'&order=created_at.desc&limit=30',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}})
-  .then(function(r){return r.json();})
-  .then(function(data){
-    var box=document.getElementById('chat-mensajes');
-    var wasAtBottom=box.scrollHeight-box.scrollTop<=box.clientHeight+30;
-    box.innerHTML='';
-    if(!data||data.length===0){box.innerHTML='<div style="color:var(--muted);font-size:.75rem;padding:8px">No hay mensajes todavía. ¡Escribí el primero!</div>';return;}
-    // Invertir para mostrar del más viejo al más nuevo
-    data.reverse().forEach(function(m){
-      var el=document.createElement('div');
-      el.className='chat-msg'+(m.jugador===nombreJugador?' chat-msg-propio':'');
-      var hora=new Date(m.created_at).toLocaleTimeString('es',{hour:'2-digit',minute:'2-digit'});
-      el.innerHTML='<div class="chat-msg-nombre">'+m.jugador+'</div><div class="chat-msg-texto">'+m.mensaje+'</div><div class="chat-msg-time">'+hora+'</div>';
-      box.appendChild(el);
-    });
-    if(wasAtBottom)box.scrollTop=box.scrollHeight;
-  }).catch(function(){});
-}
-
-function enviarMensaje(){
-  var input=document.getElementById('chat-input');
-  var msg=input.value.trim();
-  if(!msg||!miClan||!nombreJugador)return;
-  input.value='';
-  fetch(SB_URL+'/rest/v1/clan_chat',{
-    method:'POST',
-    headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},
-    body:JSON.stringify({clan_id:miClan.id,jugador:nombreJugador,mensaje:msg})
-  })
-  .then(function(){cargarChat();})
-  .catch(function(){});
-}
-document.addEventListener('DOMContentLoaded',function(){
-  var ci=document.getElementById('chat-input');
-  if(ci)ci.addEventListener('keydown',function(e){if(e.key==='Enter')enviarMensaje();});
-});
-
-function cargarRankingClanes(){
-  fetch(SB_URL+'/rest/v1/clanes?order=almas_totales.desc&limit=10',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}})
-  .then(function(r){return r.json();})
-  .then(function(data){
-    var lista=document.getElementById('clan-ranking-lista');if(!lista)return;lista.innerHTML='';
-    var medals=['🥇','🥈','🥉'];
-    if(!data||data.length===0){lista.innerHTML='<div style="color:var(--muted);font-size:.8rem;padding:8px">No hay clanes todavía.</div>';return;}
-    data.forEach(function(c,i){
-      var el=document.createElement('div');el.className='clan-rank-item';
-      el.innerHTML='<span class="clan-rank-pos">'+(medals[i]||i+1)+'</span>'+
-        '<span class="clan-rank-tag">['+c.tag+']</span>'+
-        '<span class="clan-rank-nombre">'+c.nombre+'</span>'+
-        '<span class="clan-rank-almas">'+fmt(c.almas_totales)+'</span>';
-      lista.appendChild(el);
-    });
-  }).catch(function(){});
-}
-
-function actualizarAlmasClan(){
-  if(!miClan)return;
-  fetch(SB_URL+'/rest/v1/clanes?id=eq.'+miClan.id,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}})
-  .then(function(r){return r.json();})
-  .then(function(data){
-    if(data&&data.length>0){
-      var almasActuales=data[0].almas_totales||0;
-      var nuevasAlmas=Math.max(almasActuales,Math.floor(totalMana));
-      if(nuevasAlmas>almasActuales){
-        fetch(SB_URL+'/rest/v1/clanes?id=eq.'+miClan.id,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({almas_totales:nuevasAlmas})});
-      }
-    }
-  }).catch(function(){});
-}
-
-// ── MÚSICA ──
+// ══ MÚSICA ══
 var audioCtx=null,musicPlaying=false,musicLoop=null;
 var NOTAS=[261.63,277.18,349.23,392.00,415.30,523.25,554.37,698.46,784.00,130.81,138.59,174.61,196.00];
 var MELODIA=[{n:0,d:1},{n:2,d:.5},{n:3,d:.5},{n:4,d:1.5},{n:2,d:.5},{n:0,d:1},{n:1,d:.5},{n:0,d:1},{n:3,d:2},{n:4,d:.5},{n:5,d:.5},{n:4,d:1},{n:3,d:.5},{n:2,d:.5},{n:0,d:1.5},{n:1,d:.5},{n:0,d:2},{n:2,d:.5},{n:3,d:.5},{n:4,d:1},{n:5,d:.5},{n:4,d:.5},{n:3,d:1},{n:2,d:.5},{n:0,d:2.5},{n:4,d:.5},{n:3,d:.5},{n:2,d:1},{n:1,d:.5},{n:0,d:.5},{n:2,d:1},{n:3,d:1},{n:0,d:3}];
@@ -1095,7 +1149,7 @@ function toggleMusica(){if(musicPlaying)detenerMusica();else iniciarMusica();}
 function sfx(freq,endFreq,type,vol,dur){if(!musicPlaying||!audioCtx)return;var o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type=type;o.frequency.setValueAtTime(freq,audioCtx.currentTime);if(endFreq)o.frequency.exponentialRampToValueAtTime(endFreq,audioCtx.currentTime+dur);g.gain.setValueAtTime(vol,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+dur);o.connect(g);g.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+dur);}
 function sfxBonus(){if(!musicPlaying||!audioCtx)return;[523,659,784,1047].forEach(function(n,i){setTimeout(function(){sfx(n,null,'triangle',.12,.25);},i*80);});}
 
-// ── CANVAS ──
+// ══ CANVAS ══
 var canvas=document.getElementById('gameCanvas');
 var ctx=canvas.getContext('2d');
 function resizeCanvas(){canvas.width=canvas.parentElement.clientWidth;canvas.height=220;}
@@ -1112,100 +1166,56 @@ var NINJA={x:80,y:148,frame:0,frameTimer:0,frameDuration:80,totalFrames:6,attack
 var ENEMY={x:0,y:0,hp:10,maxHp:10,alive:true,frame:0,frameTimer:0,frameDuration:150,totalFrames:4,dying:false,dyingTimer:0,type:0,attackTimer:0,attackInterval:2500};
 var shakeTimer=0,shakeIntensity=0,auraAngle=0,deathFlash=0;
 var slashEffect={active:false,x:0,y:0,timer:0};
-
-function spawnEnemy(){
-  var r=Math.random(),t=r<.65?0:r<.90?1:2;
-  var hpBase=[8,20,60][t],scale=1+nivelEnemigo*.3+mundoActual*.5;
-  ENEMY.hp=Math.floor(hpBase*scale);ENEMY.maxHp=ENEMY.hp;
-  ENEMY.x=canvas.width-100;ENEMY.y=148;ENEMY.alive=true;ENEMY.dying=false;ENEMY.frame=0;ENEMY.frameTimer=0;
-  ENEMY.frameDuration=[150,120,100][t];ENEMY.totalFrames=4;ENEMY.type=t;
-  ENEMY.attackInterval=Math.max(600,2500-nivelEnemigo*80-mundoActual*100);ENEMY.attackTimer=ENEMY.attackInterval;
-}
-
-var ENEMY_COLORS=[
-  ['#06d6a0','#1b9e77','#74c69d'],['#d62828','#9d0208','#f72585'],['#7209b7','#560bad','#b5179e'],
-  ['#4cc9f0','#4361ee','#7209b7'],['#f77f00','#d62828','#fcbf49'],['#023e8a','#0077b6','#00b4d8'],
-];
-function getEnemyColors(){var base=Math.min(mundoActual-1,ENEMY_COLORS.length-1);return ENEMY_COLORS[base];}
+var ENEMY_COLORS=[['#06d6a0','#1b9e77','#74c69d'],['#d62828','#9d0208','#f72585'],['#7209b7','#560bad','#b5179e'],['#4cc9f0','#4361ee','#7209b7'],['#f77f00','#d62828','#fcbf49'],['#023e8a','#0077b6','#00b4d8']];
+function getEnemyColors(){return ENEMY_COLORS[Math.min(mundoActual-1,ENEMY_COLORS.length-1)];}
+function spawnEnemy(){var r=Math.random(),t=r<.65?0:r<.90?1:2;var hpBase=[8,20,60][t],scale=1+nivelEnemigo*.3+mundoActual*.5;ENEMY.hp=Math.floor(hpBase*scale);ENEMY.maxHp=ENEMY.hp;ENEMY.x=canvas.width-100;ENEMY.y=148;ENEMY.alive=true;ENEMY.dying=false;ENEMY.frame=0;ENEMY.frameTimer=0;ENEMY.frameDuration=[150,120,100][t];ENEMY.totalFrames=4;ENEMY.type=t;ENEMY.attackInterval=Math.max(600,2500-nivelEnemigo*80-mundoActual*100);ENEMY.attackTimer=ENEMY.attackInterval;}
 function lerpColor(a,b,t){return[Math.round(a[0]+(b[0]-a[0])*t),Math.round(a[1]+(b[1]-a[1])*t),Math.round(a[2]+(b[2]-a[2])*t)];}
 function lerpColorStr(a,b,t){var c=lerpColor(a,b,t);return'rgb('+c[0]+','+c[1]+','+c[2]+')';}
 
 function drawNinjaHpBar(){var bw=50,bh=5,bx=NINJA.x-bw/2,by=NINJA.y-42;ctx.fillStyle='#333';ctx.fillRect(bx,by,bw,bh);var pct=Math.max(0,hp/getMaxHp());ctx.fillStyle=pct>.6?'#06d6a0':pct>.3?'#f4a261':'#e63946';ctx.fillRect(bx,by,bw*pct,bh);ctx.strokeStyle='#555';ctx.lineWidth=1;ctx.strokeRect(bx,by,bw,bh);ctx.fillStyle='#fff';ctx.font='bold 7px Courier New';ctx.textAlign='center';ctx.fillText(Math.ceil(hp)+'/'+getMaxHp(),NINJA.x,by-2);ctx.textAlign='left';}
 
-function drawNinja(x,y,frame,attacking){
-  var c=ctx,s=3;c.save();
-  if(shakeTimer>0)c.translate((Math.random()-.5)*shakeIntensity,(Math.random()-.5)*shakeIntensity);
-  c.translate(x,y);
-  var upgCount=totalUpgrades();
-  if(upgCount>0){auraAngle+=.05;var auraSize=14+upgCount*2.5;var auraColor=upgCount<5?'#a259ff':upgCount<15?'#e63946':'#ffd700';var pulse=Math.sin(auraAngle)*.3+.7;var grad=c.createRadialGradient(0,-4,0,0,-4,auraSize*pulse);grad.addColorStop(0,auraColor+'88');grad.addColorStop(.6,auraColor+'33');grad.addColorStop(1,'transparent');c.fillStyle=grad;c.beginPath();c.arc(0,-4,auraSize*pulse,0,Math.PI*2);c.fill();if(upgCount>=3){for(var i=0;i<Math.min(upgCount,6);i++){var ang=auraAngle+i*(Math.PI*2/Math.min(upgCount,6));c.fillStyle=auraColor;c.beginPath();c.arc(Math.cos(ang)*auraSize*.7,Math.sin(ang)*auraSize*.7-4,2,0,Math.PI*2);c.fill();}}}
-  if(NINJA.hitTimer>0){c.globalAlpha=NINJA.hitTimer/300*.7;c.fillStyle='#ff0000';c.beginPath();c.arc(0,-10,20,0,Math.PI*2);c.fill();c.globalAlpha=1;}
-  c.globalAlpha=.15;c.fillStyle='#e63946';for(var i=1;i<=3;i++){c.fillRect(-i*8-4*s,0-9*s,7*s,9*s);c.globalAlpha-=.04;}c.globalAlpha=1;
-  c.fillStyle='#00000033';c.beginPath();c.ellipse(0,2,14,4,0,0,Math.PI*2);c.fill();
-  var px=[[2,0,'#1a1a2e'],[3,0,'#1a1a2e'],[4,0,'#1a1a2e'],[5,0,'#1a1a2e'],[1,1,'#1a1a2e'],[2,1,'#c9ada7'],[3,1,'#c9ada7'],[4,1,'#c9ada7'],[5,1,'#1a1a2e'],[1,2,'#1a1a2e'],[2,2,'#c9ada7'],[3,2,'#c9ada7'],[4,2,'#fff'],[5,2,'#1a1a2e'],[1,3,'#1a1a2e'],[2,3,'#1a1a2e'],[3,3,'#1a1a2e'],[4,3,'#1a1a2e'],[5,3,'#1a1a2e'],[2,4,'#16213e'],[3,4,'#e63946'],[4,4,'#16213e'],[2,5,'#16213e'],[3,5,'#e63946'],[4,5,'#16213e'],[1,6,'#16213e'],[2,6,'#16213e'],[3,6,'#16213e'],[4,6,'#16213e'],[5,6,'#16213e']];
-  var lf=[[[2,7,'#1a1a2e'],[4,7,'#1a1a2e'],[2,8,'#1a1a2e'],[4,8,'#e63946']],[[2,7,'#1a1a2e'],[3,7,'#1a1a2e'],[2,8,'#1a1a2e'],[3,8,'#e63946']],[[2,7,'#1a1a2e'],[4,7,'#1a1a2e'],[3,8,'#1a1a2e'],[4,8,'#e63946']],[[2,7,'#1a1a2e'],[4,7,'#1a1a2e'],[2,8,'#1a1a2e'],[4,8,'#e63946']],[[3,7,'#1a1a2e'],[4,7,'#1a1a2e'],[3,8,'#e63946'],[4,8,'#1a1a2e']],[[2,7,'#1a1a2e'],[4,7,'#1a1a2e'],[2,8,'#e63946'],[4,8,'#1a1a2e']]];
-  var arm=attacking?[[5,4,'#16213e'],[6,3,'#16213e'],[7,2,'#c9ada7'],[8,1,'#c0c0c0'],[9,0,'#c0c0c0']]:[[5,4,'#16213e'],[5,5,'#16213e'],[5,6,'#c9ada7']];
-  var all=px.concat(lf[frame%lf.length]).concat(arm);for(var i=0;i<all.length;i++){c.fillStyle=all[i][2];c.fillRect(all[i][0]*s-4*s,all[i][1]*s-9*s,s,s);}
-  c.restore();
-}
+function drawNinja(x,y,frame,attacking){var c=ctx,s=3;c.save();if(shakeTimer>0)c.translate((Math.random()-.5)*shakeIntensity,(Math.random()-.5)*shakeIntensity);c.translate(x,y);var upgCount=totalUpgrades();if(upgCount>0){auraAngle+=.05;var auraSize=14+upgCount*2.5;var auraColor=upgCount<5?'#a259ff':upgCount<15?'#e63946':'#ffd700';if(itemEquipado)auraColor='#ffd700';var pulse=Math.sin(auraAngle)*.3+.7;var grad=c.createRadialGradient(0,-4,0,0,-4,auraSize*pulse);grad.addColorStop(0,auraColor+'88');grad.addColorStop(.6,auraColor+'33');grad.addColorStop(1,'transparent');c.fillStyle=grad;c.beginPath();c.arc(0,-4,auraSize*pulse,0,Math.PI*2);c.fill();if(upgCount>=3){for(var i=0;i<Math.min(upgCount,6);i++){var ang=auraAngle+i*(Math.PI*2/Math.min(upgCount,6));c.fillStyle=auraColor;c.beginPath();c.arc(Math.cos(ang)*auraSize*.7,Math.sin(ang)*auraSize*.7-4,2,0,Math.PI*2);c.fill();}}}
+if(NINJA.hitTimer>0){c.globalAlpha=NINJA.hitTimer/300*.7;c.fillStyle='#ff0000';c.beginPath();c.arc(0,-10,20,0,Math.PI*2);c.fill();c.globalAlpha=1;}
+c.globalAlpha=.15;c.fillStyle='#e63946';for(var i=1;i<=3;i++){c.fillRect(-i*8-4*s,0-9*s,7*s,9*s);c.globalAlpha-=.04;}c.globalAlpha=1;
+c.fillStyle='#00000033';c.beginPath();c.ellipse(0,2,14,4,0,0,Math.PI*2);c.fill();
+var px=[[2,0,'#1a1a2e'],[3,0,'#1a1a2e'],[4,0,'#1a1a2e'],[5,0,'#1a1a2e'],[1,1,'#1a1a2e'],[2,1,'#c9ada7'],[3,1,'#c9ada7'],[4,1,'#c9ada7'],[5,1,'#1a1a2e'],[1,2,'#1a1a2e'],[2,2,'#c9ada7'],[3,2,'#c9ada7'],[4,2,'#fff'],[5,2,'#1a1a2e'],[1,3,'#1a1a2e'],[2,3,'#1a1a2e'],[3,3,'#1a1a2e'],[4,3,'#1a1a2e'],[5,3,'#1a1a2e'],[2,4,'#16213e'],[3,4,'#e63946'],[4,4,'#16213e'],[2,5,'#16213e'],[3,5,'#e63946'],[4,5,'#16213e'],[1,6,'#16213e'],[2,6,'#16213e'],[3,6,'#16213e'],[4,6,'#16213e'],[5,6,'#16213e']];
+var lf=[[[2,7,'#1a1a2e'],[4,7,'#1a1a2e'],[2,8,'#1a1a2e'],[4,8,'#e63946']],[[2,7,'#1a1a2e'],[3,7,'#1a1a2e'],[2,8,'#1a1a2e'],[3,8,'#e63946']],[[2,7,'#1a1a2e'],[4,7,'#1a1a2e'],[3,8,'#1a1a2e'],[4,8,'#e63946']],[[2,7,'#1a1a2e'],[4,7,'#1a1a2e'],[2,8,'#1a1a2e'],[4,8,'#e63946']],[[3,7,'#1a1a2e'],[4,7,'#1a1a2e'],[3,8,'#e63946'],[4,8,'#1a1a2e']],[[2,7,'#1a1a2e'],[4,7,'#1a1a2e'],[2,8,'#e63946'],[4,8,'#1a1a2e']]];
+var arm=attacking?[[5,4,'#16213e'],[6,3,'#16213e'],[7,2,'#c9ada7'],[8,1,'#c0c0c0'],[9,0,'#c0c0c0']]:[[5,4,'#16213e'],[5,5,'#16213e'],[5,6,'#c9ada7']];
+var all=px.concat(lf[frame%lf.length]).concat(arm);for(var i=0;i<all.length;i++){c.fillStyle=all[i][2];c.fillRect(all[i][0]*s-4*s,all[i][1]*s-9*s,s,s);}
+c.restore();}
 
-function drawEnemy(en){
-  var c=ctx,col=getEnemyColors();c.save();c.translate(en.x,en.y);
-  c.fillStyle='#00000033';c.beginPath();c.ellipse(0,2,16,5,0,0,Math.PI*2);c.fill();
-  var s=en.type===2?4:3,f=en.frame%4;
-  if(en.type===0){
-    var sf=[[[1,2],[2,1],[3,1],[4,1],[5,2],[1,3],[2,3],[3,3],[4,3],[5,3],[2,4],[3,4],[4,4]],[[1,3],[2,2],[3,2],[4,2],[5,3],[1,4],[2,4],[3,4],[4,4],[5,4],[2,5],[3,5],[4,5]]];
-    var fr=sf[f%2];for(var i=0;i<fr.length;i++){c.fillStyle=i<3?col[1]:col[0];c.fillRect(fr[i][0]*s-4*s,fr[i][1]*s-6*s,s,s);}
-    c.fillStyle='#fff';c.fillRect(2*s-4*s,2*s-6*s,s,s);c.fillRect(4*s-4*s,2*s-6*s,s,s);
-    c.fillStyle='#000';c.fillRect(2.3*s-4*s,2.3*s-6*s,s*.6,s*.6);c.fillRect(4.3*s-4*s,2.3*s-6*s,s*.6,s*.6);
-  }else if(en.type===1){
-    var dp=[[3,0],[3,1],[4,1],[2,2],[3,2],[4,2],[5,2],[2,3],[3,3],[4,3],[5,3],[2,4],[3,4],[4,4],[5,4],[2,5],[3,5],[4,5],[5,5],[2,6],[5,6]];
-    var dy=f<2?0:-1;for(var i=0;i<dp.length;i++){c.fillStyle=i<3?col[1]:col[0];c.fillRect(dp[i][0]*s-4*s,dp[i][1]*s-7*s+dy,s,s);}
-    c.fillStyle=col[2];c.fillRect(2*s-4*s,3*s-7*s+dy,s,s);c.fillRect(5*s-4*s,3*s-7*s+dy,s,s);
-  }else{
-    var bp=[[2,0],[3,0],[4,0],[1,1],[2,1],[3,1],[4,1],[5,1],[1,2],[2,2],[3,2],[4,2],[5,2],[1,3],[2,3],[3,3],[4,3],[5,3],[1,4],[2,4],[3,4],[4,4],[5,4],[2,5],[3,5],[4,5],[1,6],[5,6]];
-    var bdy=f%2===0?0:-2;for(var i=0;i<bp.length;i++){c.fillStyle=i<3?col[2]:col[0];c.fillRect(bp[i][0]*s-4*s,bp[i][1]*s-8*s+bdy,s,s);}
-    c.fillStyle='#ffd700';c.fillRect(2*s-4*s,-1*s-8*s+bdy,s,s);c.fillRect(3*s-4*s,-2*s-8*s+bdy,s,s);c.fillRect(4*s-4*s,-1*s-8*s+bdy,s,s);
-  }
-  c.restore();
-  var bw=60,bh=5,bx=en.x-bw/2,by=en.y-38;ctx.fillStyle='#333';ctx.fillRect(bx,by,bw,bh);var pct=Math.max(0,en.hp/en.maxHp);ctx.fillStyle=pct>.5?col[0]:pct>.25?'#f4a261':'#e63946';ctx.fillRect(bx,by,bw*pct,bh);ctx.strokeStyle='#555';ctx.lineWidth=1;ctx.strokeRect(bx,by,bw,bh);
-  ctx.fillStyle='#ffaaaa';ctx.font='bold 7px Courier New';ctx.textAlign='center';ctx.fillText('Nv.'+nivelEnemigo,en.x,by-2);ctx.textAlign='left';
-}
+function drawEnemy(en){var c=ctx,col=getEnemyColors();c.save();c.translate(en.x,en.y);c.fillStyle='#00000033';c.beginPath();c.ellipse(0,2,16,5,0,0,Math.PI*2);c.fill();var s=en.type===2?4:3,f=en.frame%4;
+if(en.type===0){var sf=[[[1,2],[2,1],[3,1],[4,1],[5,2],[1,3],[2,3],[3,3],[4,3],[5,3],[2,4],[3,4],[4,4]],[[1,3],[2,2],[3,2],[4,2],[5,3],[1,4],[2,4],[3,4],[4,4],[5,4],[2,5],[3,5],[4,5]]];var fr=sf[f%2];for(var i=0;i<fr.length;i++){c.fillStyle=i<3?col[1]:col[0];c.fillRect(fr[i][0]*s-4*s,fr[i][1]*s-6*s,s,s);}c.fillStyle='#fff';c.fillRect(2*s-4*s,2*s-6*s,s,s);c.fillRect(4*s-4*s,2*s-6*s,s,s);c.fillStyle='#000';c.fillRect(2.3*s-4*s,2.3*s-6*s,s*.6,s*.6);c.fillRect(4.3*s-4*s,2.3*s-6*s,s*.6,s*.6);}
+else if(en.type===1){var dp=[[3,0],[3,1],[4,1],[2,2],[3,2],[4,2],[5,2],[2,3],[3,3],[4,3],[5,3],[2,4],[3,4],[4,4],[5,4],[2,5],[3,5],[4,5],[5,5],[2,6],[5,6]];var dy=f<2?0:-1;for(var i=0;i<dp.length;i++){c.fillStyle=i<3?col[1]:col[0];c.fillRect(dp[i][0]*s-4*s,dp[i][1]*s-7*s+dy,s,s);}c.fillStyle=col[2];c.fillRect(2*s-4*s,3*s-7*s+dy,s,s);c.fillRect(5*s-4*s,3*s-7*s+dy,s,s);}
+else{var bp=[[2,0],[3,0],[4,0],[1,1],[2,1],[3,1],[4,1],[5,1],[1,2],[2,2],[3,2],[4,2],[5,2],[1,3],[2,3],[3,3],[4,3],[5,3],[1,4],[2,4],[3,4],[4,4],[5,4],[2,5],[3,5],[4,5],[1,6],[5,6]];var bdy=f%2===0?0:-2;for(var i=0;i<bp.length;i++){c.fillStyle=i<3?col[2]:col[0];c.fillRect(bp[i][0]*s-4*s,bp[i][1]*s-8*s+bdy,s,s);}c.fillStyle='#ffd700';c.fillRect(2*s-4*s,-1*s-8*s+bdy,s,s);c.fillRect(3*s-4*s,-2*s-8*s+bdy,s,s);c.fillRect(4*s-4*s,-1*s-8*s+bdy,s,s);}
+c.restore();
+var bw=60,bh=5,bx=en.x-bw/2,by=en.y-38;ctx.fillStyle='#333';ctx.fillRect(bx,by,bw,bh);var pct=Math.max(0,en.hp/en.maxHp);ctx.fillStyle=pct>.5?col[0]:pct>.25?'#f4a261':'#e63946';ctx.fillRect(bx,by,bw*pct,bh);ctx.strokeStyle='#555';ctx.lineWidth=1;ctx.strokeRect(bx,by,bw,bh);ctx.fillStyle='#ffaaaa';ctx.font='bold 7px Courier New';ctx.textAlign='center';ctx.fillText('Nv.'+nivelEnemigo,en.x,by-2);ctx.textAlign='left';}
 
-function drawBackground(dt){
-  var W=canvas.width,H=canvas.height,speed=1+getMPS()*.03;
-  bgOffset1+=speed*.3*dt/16;bgOffset2+=speed*.6*dt/16;bgOffset3+=speed*1.2*dt/16;
-  var now2=Date.now(),elapsed=now2-timeLast;timeLast=now2;
-  timeOfDay+=timeDirection*(elapsed/TIME_CYCLE);if(timeOfDay>=1){timeOfDay=1;timeDirection=-1;}if(timeOfDay<=0){timeOfDay=0;timeDirection=1;}
-  var t=timeOfDay,m=getMundoActualData();
-  var sTop=lerpColor(m.skyTop,[135,206,235],t*.6),sBot=lerpColor(m.skyBot,[200,230,255],t*.6);
-  var sky=ctx.createLinearGradient(0,0,0,H*.6);sky.addColorStop(0,'rgb('+sTop[0]+','+sTop[1]+','+sTop[2]+')');sky.addColorStop(1,'rgb('+sBot[0]+','+sBot[1]+','+sBot[2]+')');ctx.fillStyle=sky;ctx.fillRect(0,0,W,H*.6);
-  if(t<.5){var la=1-t*2;ctx.globalAlpha=la;ctx.fillStyle='#fffde7';ctx.beginPath();ctx.arc(W*.85,30,18,0,Math.PI*2);ctx.fill();ctx.fillStyle='rgb('+sTop[0]+','+sTop[1]+','+sTop[2]+')';ctx.beginPath();ctx.arc(W*.85+8,26,15,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;ctx.fillStyle='rgba(255,255,255,'+la+')';[[.1,.05],[.25,.12],[.4,.04],[.6,.08],[.7,.03]].forEach(function(s){ctx.fillRect(s[0]*W,s[1]*H,1.5,1.5);});}
-  else{var sa=(t-.5)*2;ctx.globalAlpha=sa;ctx.shadowBlur=25;ctx.shadowColor='#FFD700';ctx.fillStyle='#FFF176';ctx.beginPath();ctx.arc(W*.8,25,20,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.globalAlpha=1;}
-  lightning.nextIn-=elapsed;if(lightning.nextIn<=0&&t<.3){lightning.active=true;lightning.timer=120;lightning.x=W*.2+Math.random()*W*.6;lightning.nextIn=8000+Math.random()*12000;}
-  if(lightning.active){lightning.timer-=elapsed;ctx.globalAlpha=lightning.timer/120;ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.shadowBlur=20;ctx.shadowColor='#a0c4ff';ctx.beginPath();var lx=lightning.x,ly=0;ctx.moveTo(lx,ly);for(var i=0;i<5;i++){lx+=(Math.random()-.5)*30;ly+=H*.1;ctx.lineTo(lx,ly);}ctx.stroke();ctx.shadowBlur=0;ctx.globalAlpha=1;if(lightning.timer<=0)lightning.active=false;}
-  ctx.fillStyle='rgb('+m.mtColor[0]+','+m.mtColor[1]+','+m.mtColor[2]+')';
-  for(var i=0;i<4;i++){var mx=(i*W/2-bgOffset1%(W/2))-W/4;ctx.beginPath();ctx.moveTo(mx,H*.6);ctx.lineTo(mx+W/4,H*.15);ctx.lineTo(mx+W/2,H*.6);ctx.closePath();ctx.fill();}
-  ctx.fillStyle='rgb('+m.treeColor[0]+','+m.treeColor[1]+','+m.treeColor[2]+')';
-  for(var i=0;i<8;i++){var tx=i*W/4-bgOffset2%(W/4);ctx.beginPath();ctx.moveTo(tx,H*.65);ctx.lineTo(tx+10,H*.45);ctx.lineTo(tx+20,H*.65);ctx.closePath();ctx.fill();ctx.fillRect(tx+7,H*.65,6,H*.1);}
-  var gTop=m.groundTop;var ground=ctx.createLinearGradient(0,H*.65,0,H);ground.addColorStop(0,'rgb('+gTop[0]+','+gTop[1]+','+gTop[2]+')');ground.addColorStop(1,'rgb('+(gTop[0]/2)+','+(gTop[1]/2)+','+(gTop[2]/2)+')');ctx.fillStyle=ground;ctx.fillRect(0,H*.65,W,H*.35);
-  ctx.strokeStyle='rgba('+gTop[0]+','+gTop[1]+','+gTop[2]+',.5)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,H*.65);ctx.lineTo(W,H*.65);ctx.stroke();
-  for(var i=0;i<particles.length;i++){var p=particles[i];p.x+=p.vx*speed*.5;p.y+=p.vy;if(p.x<-10)p.x=W+10;if(p.y>H+10)p.y=-5;ctx.save();ctx.globalAlpha=p.alpha;ctx.fillStyle=t<.5?'#fff':'#ffb7c5';ctx.translate(p.x,p.y);ctx.rotate(p.x*.05);ctx.beginPath();ctx.ellipse(0,0,p.size,p.size*.5,0,0,Math.PI*2);ctx.fill();ctx.restore();}
-  if(t<.4){fogOffset+=.3;var fa=(.4-t)*.4;for(var i=0;i<3;i++){var fx=(i*W/2+fogOffset*.5)%(W+200)-100;var fg=ctx.createRadialGradient(fx,H*.68,0,fx,H*.68,120);fg.addColorStop(0,'rgba('+gTop[0]+','+gTop[1]+','+gTop[2]+','+fa+')');fg.addColorStop(1,'transparent');ctx.fillStyle=fg;ctx.fillRect(0,H*.6,W,H*.2);}}
-  ctx.fillStyle='rgba('+gTop[0]+','+gTop[1]+','+gTop[2]+',.5)';for(var i=0;i<6;i++){var ppx=(i*W/5+bgOffset3*2)%W;ctx.fillRect(ppx,H*.65+2,6,2);}
-}
+function drawBackground(dt){var W=canvas.width,H=canvas.height,speed=1+getMPS()*.03;bgOffset1+=speed*.3*dt/16;bgOffset2+=speed*.6*dt/16;bgOffset3+=speed*1.2*dt/16;var now2=Date.now(),elapsed=now2-timeLast;timeLast=now2;timeOfDay+=timeDirection*(elapsed/TIME_CYCLE);if(timeOfDay>=1){timeOfDay=1;timeDirection=-1;}if(timeOfDay<=0){timeOfDay=0;timeDirection=1;}var t=timeOfDay,m=getMundoActualData();var sTop=lerpColor(m.skyTop,[135,206,235],t*.6),sBot=lerpColor(m.skyBot,[200,230,255],t*.6);var sky=ctx.createLinearGradient(0,0,0,H*.6);sky.addColorStop(0,'rgb('+sTop[0]+','+sTop[1]+','+sTop[2]+')');sky.addColorStop(1,'rgb('+sBot[0]+','+sBot[1]+','+sBot[2]+')');ctx.fillStyle=sky;ctx.fillRect(0,0,W,H*.6);
+if(t<.5){var la=1-t*2;ctx.globalAlpha=la;ctx.fillStyle='#fffde7';ctx.beginPath();ctx.arc(W*.85,30,18,0,Math.PI*2);ctx.fill();ctx.fillStyle='rgb('+sTop[0]+','+sTop[1]+','+sTop[2]+')';ctx.beginPath();ctx.arc(W*.85+8,26,15,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;ctx.fillStyle='rgba(255,255,255,'+la+')';[[.1,.05],[.25,.12],[.4,.04],[.6,.08],[.7,.03]].forEach(function(s){ctx.fillRect(s[0]*W,s[1]*H,1.5,1.5);});}
+else{var sa=(t-.5)*2;ctx.globalAlpha=sa;ctx.shadowBlur=25;ctx.shadowColor='#FFD700';ctx.fillStyle='#FFF176';ctx.beginPath();ctx.arc(W*.8,25,20,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.globalAlpha=1;}
+lightning.nextIn-=elapsed;if(lightning.nextIn<=0&&t<.3){lightning.active=true;lightning.timer=120;lightning.x=W*.2+Math.random()*W*.6;lightning.nextIn=8000+Math.random()*12000;}
+if(lightning.active){lightning.timer-=elapsed;ctx.globalAlpha=lightning.timer/120;ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.shadowBlur=20;ctx.shadowColor='#a0c4ff';ctx.beginPath();var lx=lightning.x,ly=0;ctx.moveTo(lx,ly);for(var i=0;i<5;i++){lx+=(Math.random()-.5)*30;ly+=H*.1;ctx.lineTo(lx,ly);}ctx.stroke();ctx.shadowBlur=0;ctx.globalAlpha=1;if(lightning.timer<=0)lightning.active=false;}
+ctx.fillStyle='rgb('+m.mtColor[0]+','+m.mtColor[1]+','+m.mtColor[2]+')';for(var i=0;i<4;i++){var mx=(i*W/2-bgOffset1%(W/2))-W/4;ctx.beginPath();ctx.moveTo(mx,H*.6);ctx.lineTo(mx+W/4,H*.15);ctx.lineTo(mx+W/2,H*.6);ctx.closePath();ctx.fill();}
+ctx.fillStyle='rgb('+m.treeColor[0]+','+m.treeColor[1]+','+m.treeColor[2]+')';for(var i=0;i<8;i++){var tx=i*W/4-bgOffset2%(W/4);ctx.beginPath();ctx.moveTo(tx,H*.65);ctx.lineTo(tx+10,H*.45);ctx.lineTo(tx+20,H*.65);ctx.closePath();ctx.fill();ctx.fillRect(tx+7,H*.65,6,H*.1);}
+var gTop=m.groundTop;var ground=ctx.createLinearGradient(0,H*.65,0,H);ground.addColorStop(0,'rgb('+gTop[0]+','+gTop[1]+','+gTop[2]+')');ground.addColorStop(1,'rgb('+(gTop[0]/2)+','+(gTop[1]/2)+','+(gTop[2]/2)+')');ctx.fillStyle=ground;ctx.fillRect(0,H*.65,W,H*.35);
+ctx.strokeStyle='rgba('+gTop[0]+','+gTop[1]+','+gTop[2]+',.5)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,H*.65);ctx.lineTo(W,H*.65);ctx.stroke();
+for(var i=0;i<particles.length;i++){var p=particles[i];p.x+=p.vx*speed*.5;p.y+=p.vy;if(p.x<-10)p.x=W+10;if(p.y>H+10)p.y=-5;ctx.save();ctx.globalAlpha=p.alpha;ctx.fillStyle=t<.5?'#fff':'#ffb7c5';ctx.translate(p.x,p.y);ctx.rotate(p.x*.05);ctx.beginPath();ctx.ellipse(0,0,p.size,p.size*.5,0,0,Math.PI*2);ctx.fill();ctx.restore();}
+if(t<.4){fogOffset+=.3;var fa=(.4-t)*.4;for(var i=0;i<3;i++){var fx=(i*W/2+fogOffset*.5)%(W+200)-100;var fg=ctx.createRadialGradient(fx,H*.68,0,fx,H*.68,120);fg.addColorStop(0,'rgba('+gTop[0]+','+gTop[1]+','+gTop[2]+','+fa+')');fg.addColorStop(1,'transparent');ctx.fillStyle=fg;ctx.fillRect(0,H*.6,W,H*.2);}}
+ctx.fillStyle='rgba('+gTop[0]+','+gTop[1]+','+gTop[2]+',.5)';for(var i=0;i<6;i++){var ppx=(i*W/5+bgOffset3*2)%W;ctx.fillRect(ppx,H*.65+2,6,2);}}
 
 function drawSlash(){if(!slashEffect.active)return;var t2=slashEffect.timer/200;ctx.save();ctx.globalAlpha=1-t2;ctx.strokeStyle='#fff';ctx.lineWidth=3;ctx.shadowBlur=10;ctx.shadowColor='#e63946';ctx.beginPath();ctx.moveTo(slashEffect.x-20,slashEffect.y-20);ctx.lineTo(slashEffect.x+20,slashEffect.y+20);ctx.stroke();ctx.beginPath();ctx.moveTo(slashEffect.x+20,slashEffect.y-20);ctx.lineTo(slashEffect.x-20,slashEffect.y+20);ctx.stroke();ctx.restore();}
 
 var lastRender=Date.now();
-function renderLoop(){var now=Date.now(),dt=now-lastRender;lastRender=now;if(shakeTimer>0)shakeTimer-=dt;else shakeIntensity=0;if(NINJA.hitTimer>0)NINJA.hitTimer-=dt;var W=canvas.width,H=canvas.height;ctx.clearRect(0,0,W,H);drawBackground(dt);if(deathFlash>0){ctx.fillStyle='rgba(230,57,70,'+(deathFlash/10)+')';ctx.fillRect(0,0,W,H);deathFlash-=dt*.05;}NINJA.frameTimer+=dt;if(NINJA.frameTimer>=NINJA.frameDuration){NINJA.frameTimer=0;NINJA.frame=(NINJA.frame+1)%NINJA.totalFrames;}if(NINJA.attacking){NINJA.attackTimer+=dt;if(NINJA.attackTimer>=NINJA.attackDuration){NINJA.attacking=false;NINJA.attackTimer=0;}}drawNinja(NINJA.x,NINJA.y,NINJA.frame,NINJA.attacking);drawNinjaHpBar();if(ENEMY.alive){ENEMY.frameTimer+=dt;if(ENEMY.frameTimer>=ENEMY.frameDuration){ENEMY.frameTimer=0;ENEMY.frame=(ENEMY.frame+1)%ENEMY.totalFrames;}drawEnemy(ENEMY);}else if(ENEMY.dying){ENEMY.dyingTimer+=dt;if(ENEMY.dyingTimer>500){ENEMY.dying=false;spawnEnemy();}}for(var i=impactParticles.length-1;i>=0;i--){var p=impactParticles[i];p.x+=p.vx;p.y+=p.vy;p.vy+=.15;p.life-=p.decay;if(p.life<=0){impactParticles.splice(i,1);continue;}ctx.globalAlpha=p.life;ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;}for(var i=starRain.length-1;i>=0;i--){var s=starRain[i];s.x+=s.vx;s.y+=s.vy;s.life-=.015;if(s.life<=0||s.y>H+10){starRain.splice(i,1);continue;}ctx.globalAlpha=s.life;ctx.fillStyle=s.color;ctx.beginPath();ctx.arc(s.x,s.y,s.size,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;}if(slashEffect.active){slashEffect.timer+=dt;if(slashEffect.timer>200)slashEffect.active=false;drawSlash();}if(bonusActivo){bonusTimer-=dt;if(bonusTimer<=0){bonusActivo=false;document.getElementById('bonus-hud').style.display='none';}}requestAnimationFrame(renderLoop);}
+function renderLoop(){var now=Date.now(),dt=now-lastRender;lastRender=now;if(shakeTimer>0)shakeTimer-=dt;else shakeIntensity=0;if(NINJA.hitTimer>0)NINJA.hitTimer-=dt;var W=canvas.width,H=canvas.height;ctx.clearRect(0,0,W,H);drawBackground(dt);if(deathFlash>0){ctx.fillStyle='rgba(230,57,70,'+(deathFlash/10)+')';ctx.fillRect(0,0,W,H);deathFlash-=dt*.05;}NINJA.frameTimer+=dt;if(NINJA.frameTimer>=NINJA.frameDuration){NINJA.frameTimer=0;NINJA.frame=(NINJA.frame+1)%NINJA.totalFrames;}if(NINJA.attacking){NINJA.attackTimer+=dt;if(NINJA.attackTimer>=NINJA.attackDuration){NINJA.attacking=false;NINJA.attackTimer=0;}}drawNinja(NINJA.x,NINJA.y,NINJA.frame,NINJA.attacking);drawNinjaHpBar();if(ENEMY.alive){ENEMY.frameTimer+=dt;if(ENEMY.frameTimer>=ENEMY.frameDuration){ENEMY.frameTimer=0;ENEMY.frame=(ENEMY.frame+1)%ENEMY.totalFrames;}drawEnemy(ENEMY);}else if(ENEMY.dying){ENEMY.dyingTimer+=dt;if(ENEMY.dyingTimer>500){ENEMY.dying=false;spawnEnemy();}}for(var i=impactParticles.length-1;i>=0;i--){var p=impactParticles[i];p.x+=p.vx;p.y+=p.vy;p.vy+=.15;p.life-=p.decay;if(p.life<=0){impactParticles.splice(i,1);continue;}ctx.globalAlpha=p.life;ctx.fillStyle=p.color;ctx.beginPath();ctx.arc(p.x,p.y,p.size*p.life,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;}for(var i=starRain.length-1;i>=0;i--){var s=starRain[i];s.x+=s.vx;s.y+=s.vy;s.life-=.015;if(s.life<=0||s.y>H+10){starRain.splice(i,1);continue;}ctx.globalAlpha=s.life;ctx.fillStyle=s.color;ctx.beginPath();ctx.arc(s.x,s.y,s.size,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;}if(slashEffect.active){slashEffect.timer+=dt;if(slashEffect.timer>200)slashEffect.active=false;drawSlash();}if(bonusActivo){bonusTimer-=dt;if(bonusTimer<=0){bonusActivo=false;document.getElementById('bonus-hud').style.display='none';}}if(pocionActiva){pocionTimer-=dt;if(pocionTimer<=0){pocionActiva=false;showToast('🧪 Poción de fuego terminada');}}requestAnimationFrame(renderLoop);}
 
-// ── COMBATE ──
+// ══ COMBATE ══
 function enemyAttackTick(dt){if(!ENEMY.alive||estaMuerto)return;ENEMY.attackTimer-=dt;if(ENEMY.attackTimer<=0){ENEMY.attackTimer=ENEMY.attackInterval;var dano=getDanoEnemigo();hp-=dano;NINJA.hitTimer=300;shakeTimer=150;shakeIntensity=3;sfx(200,80,'sawtooth',.06,.2);spawnDmgNum(NINJA.x,NINJA.y-30,'-'+Math.ceil(dano),true);if(hp<=0){hp=0;triggerDeath();}updateDisplay();}}
 function triggerDeath(){if(estaMuerto)return;estaMuerto=true;sfx(300,100,'triangle',.15,.5);document.getElementById('ds-almas').textContent=fmt(totalMana);document.getElementById('ds-kills').textContent=fmt(totalClicks);document.getElementById('ds-nivel').textContent=nivelEnemigo;document.getElementById('ds-mundo').textContent=mundoActual;prestigeSeleccion=null;document.getElementById('card-almas').classList.remove('selected');document.getElementById('card-dano').classList.remove('selected');document.getElementById('prestige-btn').disabled=true;document.getElementById('prestige-btn').textContent='[ ELEGÍ UNA OPCIÓN ]';document.getElementById('death-screen').classList.add('show');uploadScore();}
 function selectPrestige(tipo){prestigeSeleccion=tipo;document.getElementById('card-almas').classList.toggle('selected',tipo==='almas');document.getElementById('card-dano').classList.toggle('selected',tipo==='dano');document.getElementById('prestige-btn').disabled=false;document.getElementById('prestige-btn').textContent='[ CONFIRMAR PRESTIGE ]';}
 function doPrestige(){if(!prestigeSeleccion)return;if(prestigeSeleccion==='almas')prestigeBonusMps+=0.2;else prestigeBonusCpc+=0.5;prestigeCount++;resetGame(true);}
 function restartOnly(){resetGame(false);}
-function resetGame(w){document.getElementById('death-screen').classList.remove('show');estaMuerto=false;mana=0;totalMana=0;totalClicks=0;counts={};countsDef={};milestoneSeen={};hp=getMaxHp();nivelEnemigo=1;nivelTimer=0;bonusActivo=false;bonusTimer=0;killStreak=0;mundoActual=1;killsEnMundoActual=0;document.getElementById('shop-poder-list').innerHTML='';document.getElementById('shop-vida-list').innerHTML='';buildButtons();spawnEnemy();updateDisplay();renderMundos();saveState();if(w)showToast('👑 PRESTIGE '+prestigeCount+'!');}
+function resetGame(w){document.getElementById('death-screen').classList.remove('show');estaMuerto=false;mana=0;totalMana=0;totalClicks=0;counts={};countsDef={};milestoneSeen={};hp=getMaxHp();nivelEnemigo=1;nivelTimer=0;bonusActivo=false;bonusTimer=0;killStreak=0;mundoActual=1;killsEnMundoActual=0;pocionActiva=false;document.getElementById('shop-poder-list').innerHTML='';document.getElementById('shop-vida-list').innerHTML='';buildButtons();spawnEnemy();updateDisplay();renderMundos();saveState();if(w)showToast('👑 PRESTIGE '+prestigeCount+'!');}
 function nivelTick(dt){nivelTimer+=dt;if(nivelTimer>=NIVEL_INTERVALO){nivelTimer=0;nivelEnemigo++;actualizarMisionesProgreso('nivel',nivelEnemigo);showToast('⚠️ Nivel '+nivelEnemigo+'!');}}
 
 function handleAttack(e){
@@ -1215,8 +1225,7 @@ function handleAttack(e){
   var cy=(e.clientY||(e.touches&&e.touches[0].clientY))-rect.top;
   var cpc=getCPC(),dmg=bonusActivo?cpc*2:cpc;
   ENEMY.hp-=dmg;totalClicks++;
-  NINJA.attacking=true;NINJA.attackTimer=0;
-  slashEffect.active=true;slashEffect.x=ENEMY.x;slashEffect.y=ENEMY.y-20;slashEffect.timer=0;
+  NINJA.attacking=true;NINJA.attackTimer=0;slashEffect.active=true;slashEffect.x=ENEMY.x;slashEffect.y=ENEMY.y-20;slashEffect.timer=0;
   spawnImpact(ENEMY.x,ENEMY.y-20,false);spawnDmgNum(cx,cy,'-'+dmg,false);sfx(180,60,'square',.08,.12);
   var now3=Date.now();if(now3-lastKillTime<3000)killStreak++;else killStreak=1;lastKillTime=now3;
   if(Math.random()<.08){var bonus=Math.floor(dmg*1.5);mana+=bonus;totalMana+=bonus;actualizarMisionesProgreso('almas',bonus);showComboText('💥 CRÍTICO!','#f4a261',cx/canvas.width*canvas.parentElement.clientWidth,cy-30);}
@@ -1225,16 +1234,15 @@ function handleAttack(e){
 }
 function killEnemy(){
   var m=getMundoActualData(),souls=[1,3,10][ENEMY.type];
-  var ganadas=Math.floor(souls*getCPC()*m.multAlmas*(bonusActivo?2:1));
+  var ganadas=Math.floor(souls*getCPC()*m.multAlmas*(bonusActivo?2:1)*(pocionActiva?3:1));
   mana+=ganadas;totalMana+=ganadas;deathFlash=8;shakeTimer=250;shakeIntensity=4;
-  ENEMY.alive=false;ENEMY.dying=true;ENEMY.dyingTimer=0;
-  spawnImpact(ENEMY.x,ENEMY.y-20,true);sfx(440,220,'triangle',.1,.35);
+  ENEMY.alive=false;ENEMY.dying=true;ENEMY.dyingTimer=0;spawnImpact(ENEMY.x,ENEMY.y-20,true);sfx(440,220,'triangle',.1,.35);
   killsEnMundoActual++;actualizarMisionesProgreso('kills',1);actualizarMisionesProgreso('almas',ganadas);
+  dropearMaterial();
   checkMundoAvance();checkMilestones();updateDisplay();renderMundos();saveState();
 }
 canvas.addEventListener('click',handleAttack);
 canvas.addEventListener('touchstart',function(e){e.preventDefault();handleAttack(e);},{passive:false});
-
 function spawnDmgNum(x,y,txt,isEnemy){var el=document.createElement('div');el.className='dmg-num'+(isEnemy?' enemy-dmg':'');el.textContent=txt;var wrap=document.getElementById('game-canvas-wrap'),rect=wrap.getBoundingClientRect();el.style.left=(x/canvas.width*wrap.clientWidth)+'px';el.style.top=(y/220*wrap.clientHeight)+'px';wrap.appendChild(el);setTimeout(function(){el.remove();},850);}
 function showComboText(txt,color,x,y){var el=document.createElement('div');el.className='combo-txt';el.textContent=txt;el.style.color=color;var wrap=document.getElementById('game-canvas-wrap'),rect=wrap.getBoundingClientRect();el.style.left=Math.max(0,Math.min(x-60,rect.width-150))+'px';el.style.top=Math.max(0,y)+'px';wrap.appendChild(el);setTimeout(function(){el.remove();},900);}
 
@@ -1244,54 +1252,37 @@ function spawnFloatingObj(){if(floatingObjEl||estaMuerto)return;var wrap=documen
 function removeFloatingObj(){if(floatingObjEl){floatingObjEl.remove();floatingObjEl=null;}}
 function activarBonus(){bonusActivo=true;bonusTimer=BONUS_DURACION;document.getElementById('bonus-hud').style.display='block';sfxBonus();showComboText('⚡ x2 ALMAS!','#ffd700',canvas.width/2,80);triggerStarRain();}
 
-// ── DISPLAY ──
+// ══ DISPLAY ══
 function updateDisplay(){
   var mhp=getMaxHp();hp=Math.min(hp,mhp);
-  document.getElementById('hud-mana').textContent=fmt(mana);document.getElementById('hud-mps').textContent=getMPS().toFixed(1);document.getElementById('hud-cpc').textContent=getCPC()+(bonusActivo?' x2':'');
+  document.getElementById('hud-mana').textContent=fmt(mana);document.getElementById('hud-mps').textContent=getMPS().toFixed(1);document.getElementById('hud-cpc').textContent=getCPC()+(bonusActivo?' x2':'')+(pocionActiva?' x3':'');
   document.getElementById('stat-nombre').textContent=nombreJugador||'-';document.getElementById('stat-clan').textContent=miClan?'['+miClan.tag+']':'-';document.getElementById('stat-total').textContent=fmt(totalMana);document.getElementById('stat-clicks').textContent=fmt(totalClicks);document.getElementById('stat-mps').textContent=getMPS().toFixed(2);document.getElementById('stat-cpc').textContent=getCPC();document.getElementById('stat-hp').textContent=Math.ceil(hp)+'/'+mhp;document.getElementById('stat-mundo').textContent=mundoActual;
   var m=getMundoActualData();document.getElementById('stat-mundo-kills').textContent=fmt(killsEnMundoActual)+'/'+fmt(m.killsNecesarios);document.getElementById('stat-nivel').textContent=nivelEnemigo;document.getElementById('stat-prestige').textContent=prestigeCount;
+  var itemR=RECETAS.find(function(r){return r.equipado;});document.getElementById('stat-item').textContent=itemR?itemR.nombre:'Ninguno';
   if(prestigeCount>0){document.getElementById('prestige-badge').style.display='inline-block';document.getElementById('prestige-count').textContent=prestigeCount;}
   document.getElementById('world-badge').textContent='🌍 '+m.nombre;
+  // Timer rueda
+  var ahora=Date.now();
+  if(ahora-wheelUltimaSpin>=WHEEL_COOLDOWN){document.getElementById('wheel-badge').style.display='inline-block';document.getElementById('wheel-btn-canvas').style.display='block';}
   for(var i=0;i<UPGRADES_PODER.length;i++){var upg=UPGRADES_PODER[i];var btn=document.getElementById('pbtn-'+upg.id),badge=document.getElementById('pbadge-'+upg.id),cost=document.getElementById('pcost-'+upg.id);if(!btn)continue;var c=getCostP(upg),cnt=counts[upg.id]||0,can=mana>=c;btn.classList.toggle('can-afford',can);btn.classList.toggle('cannot-afford',!can);cost.textContent='[ '+fmt(c)+' ]';if(cnt>0){badge.textContent='x'+cnt;badge.style.display='inline';}else badge.style.display='none';}
   for(var i=0;i<UPGRADES_VIDA.length;i++){var upg=UPGRADES_VIDA[i];var btn=document.getElementById('dbtn-'+upg.id),badge=document.getElementById('dbadge-'+upg.id),cost=document.getElementById('dcost-'+upg.id);if(!btn)continue;var c=getCostD(upg),cnt=countsDef[upg.id]||0,can=mana>=c;btn.classList.toggle('can-afford',can);btn.classList.toggle('cannot-afford',!can);cost.textContent='[ '+fmt(c)+' ]';if(cnt>0){badge.textContent='x'+cnt;badge.style.display='inline';}else badge.style.display='none';}
 }
-function buildButtons(){
-  var listP=document.getElementById('shop-poder-list');
-  UPGRADES_PODER.forEach(function(upg){var btn=document.createElement('button');btn.id='pbtn-'+upg.id;btn.className='upgrade-btn cannot-afford';btn.innerHTML='<div class="upg-name"><span>'+upg.name+'</span><span id="pbadge-'+upg.id+'" class="count-badge" style="display:none"></span></div><div class="upg-desc">'+upg.desc+'</div><div id="pcost-'+upg.id+'" class="upg-cost">[ '+fmt(upg.baseCost)+' ]</div>';btn.addEventListener('click',function(){var c=getCostP(upg);if(mana<c)return;mana-=c;counts[upg.id]=(counts[upg.id]||0)+1;updateDisplay();saveState();});listP.appendChild(btn);});
-  var listD=document.getElementById('shop-vida-list');
-  UPGRADES_VIDA.forEach(function(upg){var btn=document.createElement('button');btn.id='dbtn-'+upg.id;btn.className='upgrade-btn defense-btn cannot-afford';btn.innerHTML='<div class="upg-name"><span>'+upg.name+'</span><span id="dbadge-'+upg.id+'" class="count-badge def" style="display:none"></span></div><div class="upg-desc">'+upg.desc+'</div><div id="dcost-'+upg.id+'" class="upg-cost">[ '+fmt(upg.baseCost)+' ]</div>';btn.addEventListener('click',function(){var c=getCostD(upg);if(mana<c)return;mana-=c;countsDef[upg.id]=(countsDef[upg.id]||0)+1;if(upg.hp>0)hp=Math.min(hp+upg.hp,getMaxHp());updateDisplay();saveState();});listD.appendChild(btn);});
-}
+function buildButtons(){var listP=document.getElementById('shop-poder-list');UPGRADES_PODER.forEach(function(upg){var btn=document.createElement('button');btn.id='pbtn-'+upg.id;btn.className='upgrade-btn cannot-afford';btn.innerHTML='<div class="upg-name"><span>'+upg.name+'</span><span id="pbadge-'+upg.id+'" class="count-badge" style="display:none"></span></div><div class="upg-desc">'+upg.desc+'</div><div id="pcost-'+upg.id+'" class="upg-cost">[ '+fmt(upg.baseCost)+' ]</div>';btn.addEventListener('click',function(){var c=getCostP(upg);if(mana<c)return;mana-=c;counts[upg.id]=(counts[upg.id]||0)+1;updateDisplay();saveState();});listP.appendChild(btn);});var listD=document.getElementById('shop-vida-list');UPGRADES_VIDA.forEach(function(upg){var btn=document.createElement('button');btn.id='dbtn-'+upg.id;btn.className='upgrade-btn defense-btn cannot-afford';btn.innerHTML='<div class="upg-name"><span>'+upg.name+'</span><span id="dbadge-'+upg.id+'" class="count-badge def" style="display:none"></span></div><div class="upg-desc">'+upg.desc+'</div><div id="dcost-'+upg.id+'" class="upg-cost">[ '+fmt(upg.baseCost)+' ]</div>';btn.addEventListener('click',function(){var c=getCostD(upg);if(mana<c)return;mana-=c;countsDef[upg.id]=(countsDef[upg.id]||0)+1;if(upg.hp>0)hp=Math.min(hp+upg.hp,getMaxHp());updateDisplay();saveState();});listD.appendChild(btn);});}
 function showShop(shop,el){document.querySelectorAll('.shop-list').forEach(function(e){e.style.display='none';});document.querySelectorAll('.shop-tab').forEach(function(e){e.classList.remove('active');});document.getElementById('shop-'+shop+'-list').style.display='flex';if(el)el.classList.add('active');}
 
 function checkMilestones(){for(var i=0;i<MILESTONES.length;i++){var m=MILESTONES[i];if(!milestoneSeen[m.at]&&totalMana>=m.at){milestoneSeen[m.at]=true;showToast(m.msg);triggerStarRain();}}}
 var toastTimeout;
 function showToast(msg){var el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimeout);toastTimeout=setTimeout(function(){el.classList.remove('show');},3500);}
-function showTab(tab,el){document.querySelectorAll('.tab-content').forEach(function(e){e.classList.remove('active');});document.querySelectorAll('.tab-btn').forEach(function(e){e.classList.remove('active');});document.getElementById('tab-'+tab).classList.add('active');if(el)el.classList.add('active');if(tab==='ranking')loadRanking();if(tab==='desafios')loadMisDesafios();if(tab==='misiones')renderMisiones();if(tab==='mundos')renderMundos();if(tab==='jefe'){cargarJefe();}if(tab==='clanes'){updateClanPanel();cargarRankingClanes();}}
+function showTab(tab,el){document.querySelectorAll('.tab-content').forEach(function(e){e.classList.remove('active');});document.querySelectorAll('.tab-btn').forEach(function(e){e.classList.remove('active');});document.getElementById('tab-'+tab).classList.add('active');if(el)el.classList.add('active');if(tab==='ranking')loadRanking();if(tab==='desafios')loadMisDesafios();if(tab==='misiones')renderMisiones();if(tab==='mundos')renderMundos();if(tab==='jefe')cargarJefe();if(tab==='clanes'){updateClanPanel();cargarRankingClanes();}}
 
-// ── SUPABASE ──
-function uploadScore(){
-  if(!nombreJugador)return;
-  var clanTag=miClan?'['+miClan.tag+']':'';
-  fetch(SB_URL+'/rest/v1/ranking?nombre=eq.'+encodeURIComponent(nombreJugador)+'&version=eq.'+GAME_VERSION,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}})
-  .then(function(r){return r.json();})
-  .then(function(data){
-    var score=Math.floor(totalMana);
-    if(data&&data.length>0){
-      if(score>data[0].mana||prestigeCount>(data[0].prestige||0)){
-        fetch(SB_URL+'/rest/v1/ranking?nombre=eq.'+encodeURIComponent(nombreJugador)+'&version=eq.'+GAME_VERSION,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({mana:score,prestige:prestigeCount,version:GAME_VERSION,clan_tag:clanTag,updated_at:new Date().toISOString()})});
-      }
-    }else{
-      fetch(SB_URL+'/rest/v1/ranking',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({nombre:nombreJugador,mana:score,prestige:prestigeCount,version:GAME_VERSION,clan_tag:clanTag})});
-    }
-  }).catch(function(){});
-  actualizarAlmasClan();
-}
-function loadRanking(){document.getElementById('ranking-loading').style.display='block';document.getElementById('ranking-table').style.display='none';fetch(SB_URL+'/rest/v1/ranking?version=eq.'+GAME_VERSION+'&order=mana.desc&limit=10',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(data){document.getElementById('ranking-loading').style.display='none';document.getElementById('ranking-table').style.display='table';var body=document.getElementById('ranking-body');body.innerHTML='';var medals=['🥇','🥈','🥉'];if(!data||data.length===0){body.innerHTML='<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:18px">¡Nadie todavía!</td></tr>';return;}for(var i=0;i<data.length;i++){var row=data[i],isYou=row.nombre===nombreJugador;var tr=document.createElement('tr');tr.innerHTML='<td style="color:var(--muted)">'+(medals[i]||i+1)+'</td><td class="'+(isYou?'rank-you':'')+'">'+(row.clan_tag?'<span style="color:var(--purple)">'+row.clan_tag+'</span> ':'')+( isYou?'▶ ':'')+row.nombre+'</td><td class="rank-prestige">'+(row.prestige||0)+'</td><td class="rank-score '+(isYou?'rank-you':'')+'">'+fmt(row.mana)+'</td>';body.appendChild(tr);}}).catch(function(){document.getElementById('ranking-loading').textContent='Error.';});}
+// ══ SUPABASE ══
+function uploadScore(){if(!nombreJugador)return;var clanTag=miClan?'['+miClan.tag+']':'';fetch(SB_URL+'/rest/v1/ranking?nombre=eq.'+encodeURIComponent(nombreJugador)+'&version=eq.'+GAME_VERSION,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(data){var score=Math.floor(totalMana);if(data&&data.length>0){if(score>data[0].mana||prestigeCount>(data[0].prestige||0)){fetch(SB_URL+'/rest/v1/ranking?nombre=eq.'+encodeURIComponent(nombreJugador)+'&version=eq.'+GAME_VERSION,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({mana:score,prestige:prestigeCount,version:GAME_VERSION,clan_tag:clanTag,updated_at:new Date().toISOString()})});}}else{fetch(SB_URL+'/rest/v1/ranking',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({nombre:nombreJugador,mana:score,prestige:prestigeCount,version:GAME_VERSION,clan_tag:clanTag})});}}).catch(function(){});actualizarAlmasClan();}
+function loadRanking(){document.getElementById('ranking-loading').style.display='block';document.getElementById('ranking-table').style.display='none';fetch(SB_URL+'/rest/v1/ranking?version=eq.'+GAME_VERSION+'&order=mana.desc&limit=10',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(data){document.getElementById('ranking-loading').style.display='none';document.getElementById('ranking-table').style.display='table';var body=document.getElementById('ranking-body');body.innerHTML='';var medals=['🥇','🥈','🥉'];if(!data||data.length===0){body.innerHTML='<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:18px">¡Nadie todavía!</td></tr>';return;}for(var i=0;i<data.length;i++){var row=data[i],isYou=row.nombre===nombreJugador;var tr=document.createElement('tr');tr.innerHTML='<td style="color:var(--muted)">'+(medals[i]||i+1)+'</td><td class="'+(isYou?'rank-you':'')+'">'+(row.clan_tag?'<span style="color:var(--purple)">'+row.clan_tag+'</span> ':'')+( isYou?'▶ ':'')+row.nombre+'</td><td style="text-align:center;color:var(--gold)">'+(row.prestige||0)+'</td><td class="rank-score '+(isYou?'rank-you':'')+'">'+fmt(row.mana)+'</td>';body.appendChild(tr);}}).catch(function(){document.getElementById('ranking-loading').textContent='Error.';});}
 
-// ── DESAFÍOS ──
+// ══ DESAFÍOS ══
 function generarId(){return Date.now().toString(36)+Math.random().toString(36).substr(2,5);}
-function selectDur(seg,el){duracionSeleccionada=seg;document.querySelectorAll('.dur-btn').forEach(function(b){b.classList.remove('selected');});el.classList.add('selected');var btn=document.getElementById('create-challenge-btn');btn.disabled=false;btn.textContent='[ CREAR '+(seg===600?'10MIN':seg===1800?'30MIN':'1H')+' ]';}
-function createChallenge(){if(!duracionSeleccionada||!nombreJugador)return;var id=generarId(),expira=new Date(Date.now()+duracionSeleccionada*1000).toISOString();fetch(SB_URL+'/rest/v1/desafios',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({id:id,retador:nombreJugador,duracion:duracionSeleccionada,expira:expira,almas_retador:0,almas_retado:0})}).then(function(){var link=window.location.href.split('?')[0]+'?desafio='+id;document.getElementById('challenge-link-txt').value=link;document.getElementById('challenge-link-box').style.display='block';showToast('✅ ¡Desafío creado!');loadMisDesafios();}).catch(function(){showToast('❌ Error.');});}
+function selectDur(seg,el){duracionSeleccionada=seg;document.querySelectorAll('.dur-btn').forEach(function(b){b.classList.remove('selected');});el.classList.add('selected');var btn=document.getElementById('create-challenge-btn');btn.disabled=false;btn.textContent='[ '+(seg===600?'10MIN':seg===1800?'30MIN':'1H')+' ]';}
+function createChallenge(){if(!duracionSeleccionada||!nombreJugador)return;var id=generarId(),expira=new Date(Date.now()+duracionSeleccionada*1000).toISOString();fetch(SB_URL+'/rest/v1/desafios',{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({id:id,retador:nombreJugador,duracion:duracionSeleccionada,expira:expira,almas_retador:0,almas_retado:0})}).then(function(){var link=window.location.href.split('?')[0]+'?desafio='+id;document.getElementById('challenge-link-txt').value=link;document.getElementById('challenge-link-box').style.display='block';showToast('✅ ¡Creado!');loadMisDesafios();}).catch(function(){showToast('❌ Error.');});}
 function copyLink(){var txt=document.getElementById('challenge-link-txt').value;if(navigator.clipboard)navigator.clipboard.writeText(txt);else{document.getElementById('challenge-link-txt').select();document.execCommand('copy');}showToast('📋 ¡Copiado!');}
 function checkChallengeUrl(){var params=new URLSearchParams(window.location.search);var id=params.get('desafio');if(!id)return;fetch(SB_URL+'/rest/v1/desafios?id=eq.'+id,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(data){if(!data||data.length===0){showToast('❌ Desafío no encontrado.');return;}var d=data[0];if(new Date(d.expira)<new Date()){showToast('⏰ Ya expiró.');return;}if(d.retador===nombreJugador){startChallengeAsRetador(d);return;}if(d.retado===nombreJugador){startChallengeAsRetado(d);return;}document.getElementById('ch-retador-nombre').textContent=d.retador+' te reta!';var mins=d.duracion/60;document.getElementById('ch-duracion-txt').textContent='Duración: '+(mins>=60?'1 hora':mins+' min');document.getElementById('challenge-screen').classList.add('show');desafioActivo=d;}).catch(function(){});}
 function acceptChallenge(){if(!desafioActivo)return;document.getElementById('challenge-screen').classList.remove('show');fetch(SB_URL+'/rest/v1/desafios?id=eq.'+desafioActivo.id,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify({retado:nombreJugador})}).then(function(){startChallengeAsRetado(desafioActivo);}).catch(function(){});}
@@ -1301,26 +1292,30 @@ function startChallengeAsRetado(d){desafioActivo=d;desafioAlmasInicio=totalMana;
 function startChallengeHud(d,rol){document.getElementById('challenge-hud').classList.add('show');var expira=new Date(d.expira);clearInterval(desafioInterval);desafioInterval=setInterval(function(){var ahora=new Date(),resto=Math.max(0,expira-ahora);var mins=Math.floor(resto/60000),segs=Math.floor((resto%60000)/1000);document.getElementById('ch-timer-display').textContent=(mins<10?'0':'')+mins+':'+(segs<10?'0':'')+segs;var ganadas=Math.floor(totalMana-desafioAlmasInicio);document.getElementById('ch-me-score').textContent=fmt(ganadas);var update={};update['almas_'+rol]=ganadas;fetch(SB_URL+'/rest/v1/desafios?id=eq.'+d.id,{method:'PATCH',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'return=minimal'},body:JSON.stringify(update)}).catch(function(){});var rr=rol==='retador'?'retado':'retador';fetch(SB_URL+'/rest/v1/desafios?id=eq.'+d.id,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(dd){if(dd&&dd.length>0)document.getElementById('ch-rival-score').textContent=fmt(dd[0]['almas_'+rr]||0);}).catch(function(){});if(resto<=0){clearInterval(desafioInterval);finalizarDesafio(d,rol);}},1000);}
 function finalizarDesafio(d,rol){document.getElementById('challenge-hud').classList.remove('show');fetch(SB_URL+'/rest/v1/desafios?id=eq.'+d.id,{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(data){if(!data||data.length===0)return;var res=data[0],misAlmas=res['almas_'+rol]||0,rr=rol==='retador'?'retado':'retador',rivalAlmas=res['almas_'+rr]||0,rivalNombre=res[rr]||'Rival',gane=misAlmas>=rivalAlmas;document.getElementById('result-title').textContent=gane?'🏆 ¡GANASTE!':'💀 PERDISTE';document.getElementById('result-title').style.color=gane?'var(--gold)':'var(--accent)';document.getElementById('result-desc').textContent='Resultado final:';document.getElementById('result-me-score').textContent=fmt(misAlmas);document.getElementById('result-me-lbl').textContent='Vos ('+nombreJugador+')';document.getElementById('result-rival-score').textContent=fmt(rivalAlmas);document.getElementById('result-rival-lbl').textContent=rivalNombre;document.getElementById('result-me-box').classList.toggle('winner',gane);document.getElementById('result-rival-box').classList.toggle('winner',!gane);document.getElementById('challenge-result').classList.add('show');desafioActivo=null;}).catch(function(){});}
 function closeResult(){document.getElementById('challenge-result').classList.remove('show');}
-function loadMisDesafios(){if(!nombreJugador)return;fetch(SB_URL+'/rest/v1/desafios?or=(retador.eq.'+encodeURIComponent(nombreJugador)+',retado.eq.'+encodeURIComponent(nombreJugador)+')&order=inicio.desc&limit=5',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(data){var list=document.getElementById('challenges-list');list.innerHTML='';if(!data||data.length===0){list.innerHTML='<div style="color:var(--muted);font-size:.8rem;padding:8px 0">No tenés desafíos.</div>';return;}data.forEach(function(d){var activo=new Date(d.expira)>new Date(),misRol=d.retador===nombreJugador?'retador':'retado',rr=misRol==='retador'?'retado':'retador',misAlmas=d['almas_'+misRol]||0,rivalAlmas=d['almas_'+rr]||0,rival=d[rr]||'Esperando...';var el=document.createElement('div');el.className='challenge-item';el.innerHTML='<div class="ch-item-title">⚔️ vs '+rival+'</div><div class="ch-item-info">'+(d.duracion/60)+' min · '+(activo?'🟢 En curso':'🔴 Terminado')+'</div><div class="ch-item-scores"><span class="ch-item-me">Vos: '+fmt(misAlmas)+'</span><span class="ch-item-rival">Rival: '+fmt(rivalAlmas)+'</span></div>'+(!activo?'<div class="ch-item-winner">'+(misAlmas>=rivalAlmas?'🏆 ¡Ganaste!':'💀 Perdiste')+'</div>':'');list.appendChild(el);});}).catch(function(){});}
+function loadMisDesafios(){if(!nombreJugador)return;fetch(SB_URL+'/rest/v1/desafios?or=(retador.eq.'+encodeURIComponent(nombreJugador)+',retado.eq.'+encodeURIComponent(nombreJugador)+')&order=inicio.desc&limit=5',{headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}}).then(function(r){return r.json();}).then(function(data){var list=document.getElementById('challenges-list');list.innerHTML='';if(!data||data.length===0){list.innerHTML='<div style="color:var(--muted);font-size:.8rem;padding:8px 0">No tenés desafíos.</div>';return;}data.forEach(function(d){var activo=new Date(d.expira)>new Date(),misRol=d.retador===nombreJugador?'retador':'retado',rr=misRol==='retador'?'retado':'retador',misAlmas=d['almas_'+misRol]||0,rivalAlmas=d['almas_'+rr]||0,rival=d[rr]||'Esperando...';var el=document.createElement('div');el.className='challenge-item';el.innerHTML='<div class="ch-item-title">⚔️ vs '+rival+'</div><div class="ch-item-info">'+(d.duracion/60)+' min · '+(activo?'🟢':'🔴 Terminado')+'</div><div class="ch-item-scores"><span class="ch-item-me">Vos: '+fmt(misAlmas)+'</span><span class="ch-item-rival">Rival: '+fmt(rivalAlmas)+'</span></div>'+(!activo?'<div class="ch-item-winner">'+(misAlmas>=rivalAlmas?'🏆 ¡Ganaste!':'💀 Perdiste')+'</div>':'');list.appendChild(el);});}).catch(function(){});}
 
-// ── GAME LOOP ──
+// ══ GAME LOOP ══
 var lastTick=Date.now();
-function gameTick(){var now=Date.now(),dt=now-lastTick;lastTick=now;if(!estaMuerto){var mps=getMPS();if(mps>0){var earned=mps*(bonusActivo?2:1)*dt/1000;mana+=earned;totalMana+=earned;actualizarMisionesProgreso('almas',earned);checkMilestones();updateDisplay();}var reg=getRegen();if(reg>0&&hp<getMaxHp()){hp=Math.min(getMaxHp(),hp+reg*dt/1000);updateDisplay();}enemyAttackTick(dt);nivelTick(dt);}requestAnimationFrame(gameTick);}
+function gameTick(){var now=Date.now(),dt=now-lastTick;lastTick=now;if(!estaMuerto){var mps=getMPS();if(mps>0){var earned=mps*(bonusActivo?2:1)*dt/1000;mana+=earned;totalMana+=earned;actualizarMisionesProgreso('almas',earned);checkMilestones();updateDisplay();}var reg=getRegen();if(reg>0&&hp<getMaxHp()){hp=Math.min(getMaxHp(),hp+reg*dt/1000);updateDisplay();}enemyAttackTick(dt);nivelTick(dt);}// Timer rueda
+if(document.getElementById('tab-juego').classList.contains('active'))actualizarTimerRueda();
+requestAnimationFrame(gameTick);}
 
 setInterval(function(){if(document.getElementById('tab-misiones').classList.contains('active'))renderMisiones();},1000);
+setInterval(function(){if(document.getElementById('tab-jefe').classList.contains('active')&&jefeData){cargarJefe();cargarRankingJefe();}},5000);
 
+document.addEventListener('DOMContentLoaded',function(){var ci=document.getElementById('chat-input');if(ci)ci.addEventListener('keydown',function(e){if(e.key==='Enter')enviarMensaje();});});
 document.getElementById('name-btn').addEventListener('click',function(){var input=document.getElementById('name-input').value.trim();if(!input)return;nombreJugador=input;document.getElementById('name-screen').style.display='none';saveState();uploadScore();setTimeout(checkChallengeUrl,500);});
 document.getElementById('name-input').addEventListener('keydown',function(e){if(e.key==='Enter')document.getElementById('name-btn').click();});
 
-// ── INICIO ──
+// ══ INICIO ══
 loadState();
 if(nombreJugador){document.getElementById('name-screen').style.display='none';setTimeout(checkChallengeUrl,500);}
 hp=Math.min(hp,getMaxHp());
+if(itemEquipado){var itemR=RECETAS.find(function(r){return r.id===itemEquipado;});if(itemR)document.getElementById('stat-item').textContent=itemR.nombre;}
 buildButtons();updateDisplay();spawnEnemy();renderMundos();renderMisiones();updateClanBadge();
 if(miClan)updateClanPanel();
-setInterval(saveState,10000);
-setInterval(uploadScore,30000);
-setInterval(actualizarAlmasClan,60000);
+actualizarTimerRueda();
+setInterval(saveState,10000);setInterval(uploadScore,30000);setInterval(actualizarAlmasClan,60000);
 scheduleFloatingObj();
 requestAnimationFrame(renderLoop);
 requestAnimationFrame(gameTick);
